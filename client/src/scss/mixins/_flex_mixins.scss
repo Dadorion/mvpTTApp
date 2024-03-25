@@ -1,0 +1,12 @@
+@mixin flex-mix($direction, $just, $align) {
+   display: flex;
+   flex-direction: $direction;
+   justify-content: $just;
+   align-items: $align;
+}
+
+@mixin flex-center {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
