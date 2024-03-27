@@ -24,3 +24,26 @@ instance.interceptors.request.use(
   },
   (error) => Promise.reject(error)
 );
+
+export const authAPI = {
+  async me() {
+    try {
+      return instance.get('auth/me');
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
+  login(formData) {
+    const { email, password, rememberMe = false } = formData;
+
+    return instance.post('auth/login', {
+      email,
+      password,
+      rememberMe,
+    });
+  },
+  logout() {
+    return instance.delete('auth/login');
+  },
+};

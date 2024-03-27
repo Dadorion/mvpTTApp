@@ -1,0 +1,28 @@
+@import "../../scss/mixins/flex_mixins";
+
+.StartPage {
+  height: 100vh;
+  background-color: #232e3f;
+
+  @include flex-center;
+  > div {
+    @include flex-mix(column, center, center);
+  }
+
+  h1 {
+    color: #ccd3dc;
+    font-size: 2rem;
+  }
+  h2 {
+    color: #ccd3dc;
+  }
+
+  button {
+     margin-top: 2rem;
+     padding: 1rem 2rem;
+     border-radius: 0.3rem;
+
+     color: #232e3f;
+     font-weight: 600;
+  }
+}
