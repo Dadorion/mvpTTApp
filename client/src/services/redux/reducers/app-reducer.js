@@ -1,7 +1,7 @@
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 const initialState = {
-  initialized: false,
+  initialized: true,
 }
 
 function appReducer(state = initialState, action) {
@@ -17,14 +17,12 @@ function appReducer(state = initialState, action) {
 }
 
 // appActionCreator
-function initializedSuccess() {
-  console.log('init Action');
+export function initializedSuccess() {
   return { type: INITIALIZED_SUCCESS }
 }
 
 // authThunkCreator ->
 export function initializeAppTC() {
-  console.log('init App');
   return (dispatch) => {
       dispatch(initializedSuccess())
     }

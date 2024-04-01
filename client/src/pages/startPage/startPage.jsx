@@ -1,9 +1,11 @@
 import React from "react";
-import s from "./startPage.module.scss";
+import s from "./StartPage.module.scss";
+import { useDispatch } from "react-redux";
 
-function StartPage({ initializeAppTC }) {
+function StartPage({ initializedSuccess }) {
+  const dispatch = useDispatch();
   const handleLogin = () => {
-    initializeAppTC();
+    dispatch(initializedSuccess());
   };
 
   return (
