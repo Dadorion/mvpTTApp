@@ -1,10 +1,9 @@
 @import "../../scss/mixins/flex_mixins";
 
-.HomePage {
-  height: 100vh;
-  // background-color: #232e3f;
+.Profile {
+   height: 100vh;
 
-  @include flex-mix(column, center, center);
+   @include flex-mix(column, center, center);
 
   h1 {
     color: #ccd3dc;

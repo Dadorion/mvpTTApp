@@ -1,0 +1,37 @@
+.Tabbar {
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translate(-50%);
+
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  max-width: 400px;
+  height: 80px;
+  align-items: center;
+
+  background: var(--Background);
+  box-shadow: 0px -1px 4px 0px rgba(51, 51, 51, 0.1);
+}
+
+.active {
+  border-bottom: 3px solid var(--Secondary-Pink_light, #d0a39c);
+  opacity: 1;
+}
+
+.deactivated {
+  opacity: 0.6;
+}
+
+.Tabbar div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4px 8px;
+}
+
+.Tabbar img {
+  width: 24px;
+  height: 24px;
+}
