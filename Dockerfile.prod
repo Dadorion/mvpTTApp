@@ -1,0 +1,22 @@
+FROM node:20.11.0
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+WORKDIR /usr/src/app/client
+COPY client/package*.json ./
+RUN npm install --omit=dev
+
+WORKDIR /usr/src/app/server
+COPY server/package*.json ./
+RUN npm install --omit=dev
+
+WORKDIR /usr/src/app
+COPY client/build /usr/src/app/client/build
+COPY server/ ./server/
+
+EXPOSE 5000
+EXPOSE 3000
+
+CMD ["npm", "run", "start"]

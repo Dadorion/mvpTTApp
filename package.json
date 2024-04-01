@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "concurrently \"npm run server\" \"npm run client\"",
     "client": "cd client && npm start",
-    "server": "cd server && npm run dev"
+    "server": "cd server && npm run dev",
+    "start": "cd server && npm run start"
   },
   "keywords": [
     "web application"
@@ -16,6 +17,7 @@
   "devDependencies": {
     "@babel/core": "^7.24.0",
     "@babel/eslint-parser": "^7.23.10",
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
     "@babel/preset-env": "^7.24.0",
     "babel-eslint": "^10.1.0",
     "concurrently": "^8.2.2",

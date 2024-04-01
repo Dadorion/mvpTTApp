@@ -1,0 +1,17 @@
+version: "3.5"
+services:
+  web-server:
+    image: tt_app:client3
+    container_name: tt_client
+    ports:
+      - 3000:80
+    restart: unless-stopped
+    depends_on:
+      - node-server
+
+  node-server:
+    image: tt_app:server
+    container_name: tt_server
+    ports:
+      - 5000:5000
+    restart: unless-stopped
