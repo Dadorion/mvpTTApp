@@ -6,6 +6,7 @@ import { initializedSuccess } from "./services/redux/reducers/app-reducer";
 import { Route, Routes } from "react-router-dom";
 import Profile from "./pages/profile/Profile";
 import Tabbar from "./components/Tabbar/Tabbar";
+import Tournament from "./pages/tournament/Tournament";
 
 function App() {
   const initialized = useSelector((store) => store.app.initialized);
@@ -18,6 +19,7 @@ function App() {
     <div  className="App">
       <Routes>
         <Route path="/" element={<HomePage />} />
+        <Route path="/counter" element={<Tournament />} />
         <Route path="/profile" element={<Profile />} />
       </Routes>
       <Tabbar />

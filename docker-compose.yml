@@ -5,7 +5,7 @@ services:
     container_name: tt_client
     ports:
       - 3000:80
-    restart: unless-stopped
+    restart: always
     depends_on:
       - node-server
 
@@ -14,4 +14,21 @@ services:
     container_name: tt_server
     ports:
       - 5000:5000
-    restart: unless-stopped
+    restart: always
+    depends_on:
+      - db
+
+  db:
+    container_name: postgresDB
+    image: postgres
+    restart: always
+    ports:
+      - 5005:5432
+    volumes:
+      - db-data:/etc/data
+    environment:
+      POSTGRES_PASSWORD: 1111
+      PGDATA: /etc/data
+
+volumes:
+  db-data:

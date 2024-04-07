@@ -1,6 +1,6 @@
 @import "../../scss/mixins/flex_mixins";
 
-.Profile {
+.Tournament {
    height: 100vh;
 
    @include flex-mix(column, center, center);
@@ -12,9 +12,5 @@
   }
   h2 {
     color: #ccd3dc;
-  }
-
-  .personalInfo{
-    background-color: lightgray;
   }
 }
