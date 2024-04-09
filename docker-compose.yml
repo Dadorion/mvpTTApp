@@ -25,10 +25,9 @@ services:
     ports:
       - 5005:5432
     volumes:
-      - db-data:/etc/data
+      - pg-data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: 1111
-      PGDATA: /etc/data
 
 volumes:
-  db-data:
+  pg-data:
