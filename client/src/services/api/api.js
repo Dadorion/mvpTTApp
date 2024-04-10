@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from "axios";
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: 'http://localhost:5000/',
+  baseURL: "http://localhost:5006/",
 });
-const TOKEN = 'token'
+const TOKEN = "token";
 
 instance.interceptors.request.use(
   (config) => {
@@ -22,13 +22,13 @@ instance.interceptors.request.use(
 
     return config;
   },
-  (error) => Promise.reject(error)
+  (error) => Promise.reject(error),
 );
 
 export const authAPI = {
   async me() {
     try {
-      return instance.get('auth/me');
+      return instance.get("auth/me");
     } catch (e) {
       console.log(e);
       return null;
@@ -37,13 +37,25 @@ export const authAPI = {
   login(formData) {
     const { email, password, rememberMe = false } = formData;
 
-    return instance.post('auth/login', {
+    return instance.post("auth/login", {
       email,
       password,
       rememberMe,
     });
   },
   logout() {
-    return instance.delete('auth/login');
+    return instance.delete("auth/login");
+  },
+};
+
+export const profileAPI = {
+  async getMyProfile() {
+    try {
+      const response = await instance.get("api/profile/me");
+      return response.data;
+    } catch (error) {
+      console.error("Ошибка при запросе за профилем: ", error);
+      throw error;
+    }
   },
 };
