@@ -1,10 +1,10 @@
 import { Router } from "express";
-import userRouter from "./UserRouter";
-import authMiddleware from "../middleware/authMiddleware";
-import checkUserRoleMiddleware from "../middleware/roleMiddleware";
+import userRouter from "./UserRouter.js";
+import authMiddleware from "../middleware/authMiddleware.js";
+import checkUserRoleMiddleware from "../middleware/roleMiddleware.js";
 
-const router = new Router();
+const mainRouter = new Router();
 
-router.use("/users", authMiddleware, checkUserRoleMiddleware, userRouter);
+mainRouter.use("/users", authMiddleware, checkUserRoleMiddleware, userRouter);
 
-export default router;
+export default mainRouter;

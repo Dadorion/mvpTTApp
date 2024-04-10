@@ -1,31 +1,24 @@
-import pool from "../../config/database";
+import pool from "../../config/database.js";
 
 class UserService {
-  async create(user) {
-    const { name, surname, birthday, status, city } = user;
-
-    const q = Query.insert("players", [
-      "name",
-      "surname",
-      "birthday",
-      "status",
-      "city",
-    ]);
-    const newPlayer = await pool.query(q, [
-      name,
-      surname,
-      birthday,
-      status,
-      city,
-    ]);
+  static async create({ email, password }) {
+    const newPlayer = await pool.query(
+      "INSERT INTO users (email, password) VALUES ($1, $2)",
+      [email, password],
+    );
 
     return newPlayer;
   }
-  async getAll(page, limit) {
+
+  static async getAll({ page, limit }) {
     const offset = (page - 1) * limit;
-    const q = Query.selectAll("users", "*", "DESC");
-    const answer = await pool.query(q, [limit, offset]);
-    let result = {
+
+    const answer = await pool.query(
+      "SELECT * FROM users LIMIT = $1 OFFSET = $2",
+      [limit, offset],
+    );
+
+    const result = {
       pagination: {
         usersCount: answer.rows.length,
       },
@@ -35,24 +28,14 @@ class UserService {
 
     return result;
   }
-  async updateMyPassword(userId, oldPassword, newPasswordOne, newPasswordTwo) {
-    const q = Query.insert("players", [
-      "name",
-      "surname",
-      "birthday",
-      "status",
-      "city",
-    ]);
-    const updatedPlayer = await pool.query(q, [
-      name,
-      surname,
-      birthday,
-      status,
-      city,
-      id,
-    ]);
 
-    return updatedPlayer.rows;
+  static async updateMyPassword({ id, email, password }) {
+    const updatedUser = await pool.query(
+      "UPDATE users SET email = $2, email = $3 WHERE id = $1",
+      [id, email, password],
+    );
+
+    return updatedUser.rows;
   }
 }
 

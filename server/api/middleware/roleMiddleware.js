@@ -1,4 +1,4 @@
-import pool from '../../database.js'
+import pool from '../../config/database.js'
 
 export default async function checkUserRoleMiddleware(req, res, next) {
    const allowedRoles = ['admin']
@@ -19,9 +19,8 @@ export default async function checkUserRoleMiddleware(req, res, next) {
             users.id = $1`, [userId])).rows[0].role
 
       if (!allowedRoles.includes(userRole)) res.status(403).json({ error: 'Access denied' })
-      next()
+      return next()
    } catch (e) {
-      console.log(e.message)
       return res.status(403).json({ message: "Пользователь не является админом" })
    }
 }

@@ -2,6 +2,8 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
+import authRouter from "./api/routes/authRouter.js"
+import mainRouter from "./api/routes/mainRouter.js"
 
 dotenv.config();
 
@@ -21,6 +23,9 @@ app.use(express.static(path.resolve(path.dirname(""), "public")));
 app.get("/", (req, res) => {
   res.sendFile(path.resolve(path.dirname(""), "public", "index.html"));
 });
+
+app.use("/auth", authRouter);
+app.use("/api", mainRouter);
 
 export default app;
 

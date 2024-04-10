@@ -1,8 +1,8 @@
 import jwt from "jsonwebtoken";
-import config from "../config/config.js";
+import config from "../../config/config.js";
 import AuthController from "../controllers/AuthController.js";
 
-export default function authMiddleware(req, res, next) {
+function authMiddleware(req, res, next) {
   if (req.method === "OPTIONS") {
     next();
   }
@@ -24,11 +24,12 @@ export default function authMiddleware(req, res, next) {
 
     const decodedData = jwt.verify(token, config.secret);
     req.user = decodedData;
-    next();
+    return next();
   } catch (e) {
-    console.log(e);
     return res.status(403).json({
       message: "Пользователь не авторизован",
     });
   }
 }
+
+export default authMiddleware

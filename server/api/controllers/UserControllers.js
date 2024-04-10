@@ -1,85 +1,102 @@
-import UserService from '../services/UserService.js'
+import UserService from "../services/UserService.js";
 
 class UserController {
-   async create(req, res) {
-      try {
-         const newUser = await UserService.create(req.body)
-         let newUserAnswer = {}
-         for (const key in newUser.rows[0]) {
-            if (key.indexOf('password')) {
-               newUserAnswer[key] = newUser.rows[0][key]
-            }
-         }
-         res.json(newUserAnswer)
+  static async create(req, res) {
+    try {
+      const newUser = await UserService.create(req.body);
 
-      } catch (e) {
-         res.status(500).json(e)
+      res.json(newUser);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  static async getAll(req, res) {
+    const page = parseInt(req.query.page, 10) || 1;
+    const limit = parseInt(req.query.limit, 10) || 10;
+
+    try {
+      const allUsers = await UserService.getAll(page, limit);
+
+      if (!allUsers) {
+        res.status(204).json("This table is empty");
       }
-   }
-   
-   async getAll(req, res) {
-      const page = parseInt(req.query.page) || 1
-      const limit = parseInt(req.query.limit) || 10
-      try {
-         const allUsers = await UserService.getAll(page, limit)
-         allUsers
-            ? res.status(200).json(allUsers)
-            : res.status(204).json('This table is empty')
-      } catch (e) {
-         res.status(500).json(e)
+
+      res.status(200).json(allUsers);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  static async getOne(req, res) {
+    try {
+      const { id } = req.params;
+
+      if (!id) {
+        res.status(400).json({ message: "We need ID number." });
       }
-   }
-   async getOne(req, res) {
-      try {
-         const { id } = req.params
-         if (!id) { res.status(400).json({ message: 'We need ID namber.' }) }
-         const user = await UserService.getOne(id)
 
-         user
-            ? res.status(200).json(user)
-            : res.status(400).json('We have no such user')
-      } catch (e) {
-         res.status(500).json(e)
+      const user = await UserService.getOne(id);
+
+      if (!user) {
+        res.status(400).json("We have no such user");
       }
-   }
-   async update(req, res) {
-      try {
-         const { id } = req.body
-         if (!id) { res.status(400).json({ message: 'We need ID namber.' }) }
 
-         const updetedUser = await UserService.update(req.body)
+      res.status(200).json(user);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
 
-         res.status(200).json(updetedUser)
-      } catch (e) {
-         res.status(500).json(e.message)
+  static async update(req, res) {
+    try {
+      const { id } = req.body;
+      if (!id) {
+        res.status(400).json({ message: "We need ID number." });
       }
-   }
-   async updatePassword(req, res) {
-      try {
-         const { id } = req.body
-         if (!id) { res.status(400).json({ message: 'We need ID namber.' }) }
 
-         const updetedUser = await UserService.updateMyPassword(userId, oldPassword, newPasswordOne, newPasswordTwo);
+      const updatedUser = await UserService.update(req.body);
 
-         res.status(200).json(updetedUser)
-      } catch (e) {
-         res.status(500).json(e.message)
+      res.status(200).json(updatedUser);
+    } catch (e) {
+      res.status(500).json(e.message);
+    }
+  }
+
+  static async updatePassword(req, res) {
+    try {
+      const { id } = req.body;
+      if (!id) {
+        res.status(400).json({ message: "We need ID number." });
       }
-   }
-   async delete(req, res) {
-      try {
-         const { id } = req.params
-         if (!id) { res.status(400).json({ message: 'We need ID namber.' }) }
 
-         const deletedUser = await UserService.delete(id)
+      const updatedUser = await UserService.updateMyPassword();
 
-         deletedUser
-            ? res.status(200).json(deletedUser)
-            : res.status(400).json('We have no such user')
-      } catch (e) {
-         res.status(500).json(e)
+      res.status(200).json(updatedUser);
+    } catch (e) {
+      res.status(500).json(e.message);
+    }
+  }
+
+  static async delete(req, res) {
+    try {
+      const { id } = req.params;
+
+      if (!id) {
+        res.status(400).json({ message: "We need ID number." });
       }
-   }
+
+      const deletedUser = await UserService.delete(id);
+
+      if (!deletedUser) {
+        res.status(400).json("We have no such user");
+      }
+
+      res.status(200).json(deletedUser);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
 }
 
-export default new UserController
+export default UserController;
