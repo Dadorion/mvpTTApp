@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import s from "./Registration.module.scss";
+import s from "./Login.module.scss";
 
 import loginImage from "../../assets/images/loginImage.jpg";
 import {
@@ -9,10 +9,10 @@ import {
   registrationTC,
 } from "../../services/redux/reducers/registration-reducer";
 
-function Registration() {
+function Login() {
   const dispatch = useDispatch();
-  const email = useSelector((store) => store.registration.email);
-  const password = useSelector((store) => store.registration.password);
+  const emailValue = useSelector((store) => store.registration.email);
+  const passwordValue = useSelector((store) => store.registration.password);
 
   function handleChangeEmail(e) {
     dispatch(changeEmail(e.target.value));
@@ -21,27 +21,28 @@ function Registration() {
     dispatch(changePassword(e.target.value));
   }
   function handleConfirm() {
-    dispatch(registrationTC({ email, password }));
+    console.log("confirm form with:", emailValue, passwordValue);
+    dispatch(registrationTC({ email: emailValue, password: passwordValue }));
   }
 
   return (
-    <div className={s.Registration}>
+    <div className={s.Login}>
       <img src={loginImage} alt="logo_img" />
-      <h1>Регистрация</h1>
+      <h1>Вход</h1>
       <input
         type="text"
-        placeholder="Почта"
-        value={email}
+        placeholder="email"
+        value={emailValue}
         onChange={handleChangeEmail}
       />
       <input
         type="password"
-        placeholder="Пароль"
-        value={password}
+        placeholder="password"
+        value={passwordValue}
         onChange={handleChangePassword}
       />
       <button type="button" onClick={handleConfirm}>
-        Зарегистрироваться
+        Войти
       </button>
       <div className={s.hasAccount}>
         <span>Уже есть аккаунт?</span>
@@ -51,4 +52,4 @@ function Registration() {
   );
 }
 
-export default Registration;
+export default Login;

@@ -4,7 +4,8 @@ import StartPage from "./pages/startPage/StartPage";
 import HomePage from "./pages/homePage/HomePage";
 import { initializedSuccess } from "./services/redux/reducers/app-reducer";
 import { Route, Routes } from "react-router-dom";
-import Registration from './pages/registration/Registration'
+import Registration from "./pages/registration/Registration";
+import Login from "./pages/login/Login";
 import Profile from "./pages/profile/Profile";
 import Tabbar from "./components/Tabbar/Tabbar";
 import Tournament from "./pages/tournament/Tournament";
@@ -17,9 +18,10 @@ function App() {
   }
 
   return (
-    <div  className="App">
+    <div className="App">
       <Routes>
-      <Route path='/registration' element={<Registration />} />
+        <Route path="/registration" element={<Registration />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/" element={<HomePage />} />
         <Route path="/counter" element={<Tournament />} />
         <Route path="/profile" element={<Profile />} />

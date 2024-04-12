@@ -1,4 +1,4 @@
-import { registrationAPI } from "../../api/api";
+import { authAPI } from "../../api/api";
 
 const REGISTRATION = "registration/REGISTRATION";
 const CHANGE_EMAIL = "registration/CHANGE_EMAIL";
@@ -18,7 +18,7 @@ export function changePassword(password) {
 
 export function registrationTC(formData) {
   return async () => {
-    const response = await registrationAPI.registration(formData);
+    const response = await authAPI.registration(formData);
     if (response.status) {
       console.log("response.status: ", response.status);
     }

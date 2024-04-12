@@ -25,7 +25,7 @@ instance.interceptors.request.use(
   (error) => Promise.reject(error),
 );
 
-export const registrationAPI = {
+export const authAPI = {
   async registration(formData) {
     try {
       return await instance.post('auth/registration', formData);
@@ -34,9 +34,6 @@ export const registrationAPI = {
       return null;
     }
   },
-};
-
-export const authAPI = {
   async me() {
     try {
       return instance.get("auth/me");
@@ -46,13 +43,7 @@ export const authAPI = {
     }
   },
   login(formData) {
-    const { email, password, rememberMe = false } = formData;
-
-    return instance.post("auth/login", {
-      email,
-      password,
-      rememberMe,
-    });
+    return instance.post("auth/login", formData);
   },
   logout() {
     return instance.delete("auth/login");
