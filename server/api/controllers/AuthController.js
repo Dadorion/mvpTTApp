@@ -110,8 +110,6 @@ class AuthController {
         });
       }
 
-      const player = await AuthService.getPlayer(user.id);
-
       const validPassword = await bcrypt.compare(password, user.password);
 
       if (!validPassword) {
@@ -120,7 +118,7 @@ class AuthController {
         });
       }
 
-      const token = generateAccessToken(user.id, player.id);
+      const token = generateAccessToken(user.id);
 
       return res.json(token);
     } catch (error) {

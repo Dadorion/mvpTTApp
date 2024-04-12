@@ -3,7 +3,7 @@ import pool from "../../config/database.js";
 class AuthService {
   static async getUser(email) {
     const answer = await pool.query(
-      `SELECT id FROM users WHERE email = $1`,
+      `SELECT * FROM users WHERE email = $1`,
       [email],
     );
 

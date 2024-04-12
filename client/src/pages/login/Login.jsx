@@ -6,13 +6,13 @@ import loginImage from "../../assets/images/loginImage.jpg";
 import {
   changeEmail,
   changePassword,
-  registrationTC,
-} from "../../services/redux/reducers/registration-reducer";
+  loginTC,
+} from "../../services/redux/reducers/login-reducer";
 
 function Login() {
   const dispatch = useDispatch();
-  const emailValue = useSelector((store) => store.registration.email);
-  const passwordValue = useSelector((store) => store.registration.password);
+  const email = useSelector((store) => store.login.email);
+  const password = useSelector((store) => store.login.password);
 
   function handleChangeEmail(e) {
     dispatch(changeEmail(e.target.value));
@@ -21,8 +21,7 @@ function Login() {
     dispatch(changePassword(e.target.value));
   }
   function handleConfirm() {
-    console.log("confirm form with:", emailValue, passwordValue);
-    dispatch(registrationTC({ email: emailValue, password: passwordValue }));
+    dispatch(loginTC({ email, password}));
   }
 
   return (
@@ -32,21 +31,21 @@ function Login() {
       <input
         type="text"
         placeholder="email"
-        value={emailValue}
+        value={email}
         onChange={handleChangeEmail}
       />
       <input
         type="password"
         placeholder="password"
-        value={passwordValue}
+        value={password}
         onChange={handleChangePassword}
       />
       <button type="button" onClick={handleConfirm}>
         Войти
       </button>
       <div className={s.hasAccount}>
-        <span>Уже есть аккаунт?</span>
-        <a href="/login">Войти</a>
+        <span>Нет аккаунта?</span>
+        <a href="/registration">Зарегистрироваться</a>
       </div>
     </div>
   );

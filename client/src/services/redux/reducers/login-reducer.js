@@ -1,12 +1,12 @@
 import { authAPI } from "../../api/api";
 
-const REGISTRATION = "registration/REGISTRATION";
-const CHANGE_EMAIL = "registration/CHANGE_EMAIL";
-const CHANGE_PASSWORD = "registration/CHANGE_PASSWORD";
+const LOGIN = "login/LOGIN";
+const CHANGE_EMAIL = "login/CHANGE_EMAIL";
+const CHANGE_PASSWORD = "login/CHANGE_PASSWORD";
 
 const initialState = {
-  email: "",
-  password: "",
+  email: '',
+  password: '',
 };
 
 export function changeEmail(email) {
@@ -16,17 +16,21 @@ export function changePassword(password) {
   return { type: CHANGE_PASSWORD, payload: password };
 }
 
-export function registrationTC(formData) {
+export function loginTC(formData) {
   return async (dispatch) => {
-    await authAPI.registration(formData);
+    const response = await authAPI.login(formData);
+    const token = response.data
+
+    localStorage.setItem('token', token)
+
     dispatch(changeEmail(""));
     dispatch(changePassword(""));
   };
 }
 
-function registrationReducer(state = initialState, action) {
+function loginReducer(state = initialState, action) {
   switch (action.type) {
-    case REGISTRATION:
+    case LOGIN:
       return {
         ...state,
         ...action.payload,
@@ -46,4 +50,4 @@ function registrationReducer(state = initialState, action) {
   }
 }
 
-export default registrationReducer;
+export default loginReducer;

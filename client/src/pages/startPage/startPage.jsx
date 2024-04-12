@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 
 function StartPage({ initializedSuccess }) {
   const dispatch = useDispatch();
+
   const handleLogin = () => {
     dispatch(initializedSuccess());
   };
@@ -11,11 +12,12 @@ function StartPage({ initializedSuccess }) {
   return (
     <div className={s.StartPage}>
       <div>
-        <h2>Welcome to</h2>
+        <h1>Welcome to</h1>
         <h1>Table Tennis App</h1>
         <button type="button" onClick={handleLogin}>
           Login
         </button>
+        <h2>minimal viable product</h2>
       </div>
     </div>
   );

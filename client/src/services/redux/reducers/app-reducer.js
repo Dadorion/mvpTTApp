@@ -1,7 +1,7 @@
 const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
 
 const initialState = {
-  initialized: true,
+  initialized: false,
 }
 
 function appReducer(state = initialState, action) {
