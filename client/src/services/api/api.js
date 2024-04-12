@@ -2,7 +2,7 @@ import axios from "axios";
 
 const instance = axios.create({
   withCredentials: true,
-  baseURL: "http://localhost:5006/",
+  baseURL: "http://localhost:5000/",
 });
 const TOKEN = "token";
 
@@ -24,6 +24,17 @@ instance.interceptors.request.use(
   },
   (error) => Promise.reject(error),
 );
+
+export const registrationAPI = {
+  async registration(formData) {
+    try {
+      return await instance.post('auth/registration', formData);
+    } catch (e) {
+      console.log(e);
+      return null;
+    }
+  },
+};
 
 export const authAPI = {
   async me() {

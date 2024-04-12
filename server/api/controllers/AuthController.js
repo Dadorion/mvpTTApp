@@ -20,7 +20,8 @@ class AuthController {
         });
       }
 
-      const { email, password, passwordRepeat } = req.body;
+      const { email, password } = req.body;
+
       const candidate = await AuthService.getUser(email);
 
       if (candidate) {
@@ -30,23 +31,18 @@ class AuthController {
         });
       }
 
-      if (password !== passwordRepeat) {
-        return res.status(400).json({
-          message: "Ошибка в подтверждении пароля",
-        });
-      }
-
       const saltRounds = 10;
       const hashPassword = await bcrypt.hash(password, saltRounds);
 
-      await AuthService.addUser(email, hashPassword);
-
+      const answer = await AuthService.addUser(email, hashPassword);
       return res.json({
-        message: `Пользователь ${email}  успешно зарегистрирован`,
+        answer,
+        message: `Пользователь ${email} успешно зарегистрирован`,
       });
     } catch (error) {
       return res.status(500).json({
         message: "Ошибка сервера при регистрации",
+        errors: error
       });
     }
   }

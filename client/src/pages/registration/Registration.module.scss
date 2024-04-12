@@ -1,0 +1,46 @@
+@import "../../scss/mixins/flex_mixins";
+
+.Registration {
+  @include flex-mix(column, flex-start, stretch);
+
+  margin: 0 20px;
+
+  h1 {
+    text-align: center;
+    margin: 1.2rem;
+  }
+
+  img {
+    width: 100%;
+    margin: 0;
+    padding: 0;
+  }
+
+  .hasAccount {
+    @include flex-mix(row, center, center);
+    margin-top: 3rem;
+  }
+
+  input {
+    padding: 1rem 2rem;
+    margin: 0.4rem 0;
+    align-items: center;
+    gap: 10px;
+    flex-shrink: 0;
+
+    border-radius: 0.3rem;
+    border: 1px solid #d9d9d9;
+    background: #fff;
+  }
+
+  button {
+    width: 100%;
+
+    margin-top: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 0.3rem;
+
+    color: #232e3f;
+    font-weight: 600;
+  }
+}

@@ -1,4 +1,4 @@
-import { stopSubmit } from 'redux-form'
+// import { stopSubmit } from 'redux-form'
 
 import { authAPI } from '../../api/api'
 
@@ -54,14 +54,14 @@ export function loginTC(formData) {
     const response = await authAPI.login(formData)
     const token = response.data
 
-    if (!token) {
-      const message =
-        response.data.messages.length > 0
-          ? response.data.messages[0]
-          : 'Something went wrong. Please change your email or password and try again.'
-      dispatch(stopSubmit('login', { _error: message }))
-      return
-    }
+    // if (!token) {
+    //   const message =
+    //     response.data.messages.length > 0
+    //       ? response.data.messages[0]
+    //       : 'Something went wrong. Please change your email or password and try again.'
+    //   dispatch(stopSubmit('login', { _error: message }))
+    //   return
+    // }
 
     localStorage.setItem('token', token)
 
