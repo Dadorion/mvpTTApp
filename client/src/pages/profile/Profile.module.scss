@@ -1,9 +1,9 @@
 @import "../../scss/mixins/flex_mixins";
 
 .Profile {
-   height: 100vh;
+  height: 100vh;
 
-   @include flex-mix(column, center, center);
+  @include flex-mix(column, center, center);
 
   h1 {
     color: #ccd3dc;
@@ -13,8 +13,23 @@
   h2 {
     color: #ccd3dc;
   }
+  .PasswordInput{
+    @include flex-mix(column, center, center);
+  }
+  input {
+    margin: 0.5rem;
+    padding: 1rem 2rem;
+    border: 1px solid black;
 
-  .personalInfo{
-    background-color: lightgray;
+    color: #232e3f;
+    font-weight: 600;
+  }
+  button {
+    margin: 2rem;
+    padding: 1rem 2rem;
+    border-radius: 0.3rem;
+
+    color: #232e3f;
+    font-weight: 600;
   }
 }

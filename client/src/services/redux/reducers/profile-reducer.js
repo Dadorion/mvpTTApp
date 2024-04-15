@@ -1,63 +1,47 @@
 import { profileAPI } from "../../api/api";
 
-const SET_PLAYER_ID = "profile/SET_PLAYER_ID";
-const SET_NAME = "profile/SET_NAME";
-const SET_SURNAME = "profile/SET_SURNAME";
-const SET_PROFILE = "profile/SET_PROFILE";
+const SET_NEW_PASSWORD = "profile/SET_NEW_PASSWORD";
+const SET_NEW_PASSWORD_REPEAT = "profile/SET_NEW_PASSWORD_REPEAT";
 
 const initialState = {
-  id: 154,
-  name: "Антон",
-  surname: "Бабенко",
+  newPassword: "",
+  newPasswordRepeat: "",
 };
 
 function profileReducer(state = initialState, action) {
   switch (action.type) {
-    case SET_PLAYER_ID:
+    case SET_NEW_PASSWORD:
       return {
         ...state,
-        id: action.payload,
+        newPassword: action.payload,
       };
-    case SET_NAME:
+    case SET_NEW_PASSWORD_REPEAT:
       return {
         ...state,
-        name: action.payload,
-      };
-    case SET_SURNAME:
-      return {
-        ...state,
-        surname: action.payload,
-      };
-    case SET_PROFILE:
-      return {
-        ...state,
-        id: action.payload.id,
-        name: action.payload.name,
-        surname: action.payload.surname,
+        newPasswordRepeat: action.payload,
       };
     default:
       return state;
   }
 }
 
-export function setIdAC(id) {
-  return { type: SET_PLAYER_ID, payload: id };
-}
-export function setNameAC(name) {
-  return { type: SET_NAME, payload: name };
-}
-export function setSurnameAC(surname) {
-  return { type: SET_SURNAME, payload: surname };
-}
-export function setMyProfile(profile) {
-  return { type: SET_PROFILE, payload: profile };
+export function setNewPassword(pass) {
+  return { type: SET_NEW_PASSWORD, payload: pass };
 }
 
-export function getProfile() {
+export function setNewPasswordRepeat(pass) {
+  return { type: SET_NEW_PASSWORD_REPEAT, payload: pass };
+}
+
+export function changePasswordTC(newPassword) {
   return async (dispatch) => {
     try {
-      const profile = await profileAPI.getMyProfile();
-      dispatch(setMyProfile(profile));
+      const answer = await profileAPI.changePassword(newPassword);
+
+      if (answer.status === 200) {
+        dispatch(setNewPassword(""));
+        dispatch(setNewPasswordRepeat(""));
+      }
     } catch (error) {
       console.error("Error fetching profile:", error);
     }

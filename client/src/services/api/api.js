@@ -51,12 +51,12 @@ export const authAPI = {
 };
 
 export const profileAPI = {
-  async getMyProfile() {
+  async changePassword(newPassword) {
     try {
-      const response = await instance.get("api/profile/me");
-      return response.data;
+      const response = await instance.post('api/profile', newPassword)
+      return response;
     } catch (error) {
-      console.error("Ошибка при запросе за профилем: ", error);
+      console.error("Ошибка смены пароля: ", error);
       throw error;
     }
   },

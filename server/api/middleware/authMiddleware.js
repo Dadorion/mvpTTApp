@@ -1,6 +1,6 @@
 import jwt from "jsonwebtoken";
 import config from "../../config/config.js";
-import AuthController from "../controllers/AuthController.js";
+import AuthController from "../controllers/authController.js";
 
 function authMiddleware(req, res, next) {
   if (req.method === "OPTIONS") {
@@ -32,4 +32,4 @@ function authMiddleware(req, res, next) {
   }
 }
 
-export default authMiddleware
+export default authMiddleware;

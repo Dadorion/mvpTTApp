@@ -1,7 +1,7 @@
 import { validationResult } from "express-validator";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
-import AuthService from "../services/AuthService.js";
+import AuthService from "../services/authService.js";
 import generateAccessToken from "../../config/generateToken.js";
 
 class AuthController {
