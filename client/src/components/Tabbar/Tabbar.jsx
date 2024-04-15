@@ -22,7 +22,7 @@ function Tabbar() {
     showTabbar && (
       <div className={s.Tabbar}>
         <div className={currentPath === '/' ? s.active : s.deactivated}>
-          <Link to='/'>
+          <Link to='/home'>
             <img src={homeIcon} alt='homeIcon' />
           </Link>
           <font>Главная</font>

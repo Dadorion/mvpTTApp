@@ -1,23 +1,20 @@
 import React from "react";
 import s from "./StartPage.module.scss";
-import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
 
-function StartPage({ initializedSuccess }) {
-  const dispatch = useDispatch();
-
-  const handleLogin = () => {
-    dispatch(initializedSuccess());
-  };
+function StartPage() {
 
   return (
     <div className={s.StartPage}>
       <div>
-        <h1>Welcome to</h1>
+        <h2>Welcome to</h2>
         <h1>Table Tennis App</h1>
-        <button type="button" onClick={handleLogin}>
-          Login
-        </button>
-        <h2>minimal viable product</h2>
+        <Link to="/home">
+          <button type="button">
+            Login
+          </button>
+        </Link>
+        <h3>minimal viable product</h3>
       </div>
     </div>
   );

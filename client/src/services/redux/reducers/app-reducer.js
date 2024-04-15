@@ -1,8 +1,10 @@
-const INITIALIZED_SUCCESS = 'INITIALIZED_SUCCESS'
+import { getAuthUserData } from "./auth-reducer";
+
+const INITIALIZED_SUCCESS = "INITIALIZED_SUCCESS";
 
 const initialState = {
-  initialized: false,
-}
+  initialized: true,
+};
 
 function appReducer(state = initialState, action) {
   switch (action.type) {
@@ -10,22 +12,25 @@ function appReducer(state = initialState, action) {
       return {
         ...state,
         initialized: true,
-      }
+      };
     default:
-      return state
+      return state;
   }
 }
 
-// appActionCreator
 export function initializedSuccess() {
-  return { type: INITIALIZED_SUCCESS }
+  return { type: INITIALIZED_SUCCESS };
 }
 
-// authThunkCreator ->
-export function initializeAppTC() {
-  return (dispatch) => {
-      dispatch(initializedSuccess())
-    }
-  }
 
-export default appReducer
+export function initializeAppTC() {
+  return async (dispatch) => {
+    const userData = await dispatch(getAuthUserData());
+
+    if (userData) {
+      dispatch(initializedSuccess());
+    }
+  };
+}
+
+export default appReducer;

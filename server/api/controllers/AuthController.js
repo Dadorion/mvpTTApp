@@ -131,8 +131,6 @@ class AuthController {
   static async logout(req, res) {
     try {
       const token = req.headers.authorization?.split(" ")[1];
-
-      // Получение даты истечения срока действия токена (для очистки устаревших записей)
       const decodedToken = jwt.decode(token);
       const expiration = new Date(decodedToken.exp * 1000);
 
@@ -151,7 +149,6 @@ class AuthController {
   static async me(req, res) {
     try {
       const { userId } = req.user;
-      // получили id через мидлвар токен
       const answer = await AuthService.me(userId);
 
       if (!answer) {

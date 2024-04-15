@@ -2,10 +2,9 @@ import pool from "../../config/database.js";
 
 class AuthService {
   static async getUser(email) {
-    const answer = await pool.query(
-      `SELECT * FROM users WHERE email = $1`,
-      [email],
-    );
+    const answer = await pool.query(`SELECT * FROM users WHERE email = $1`, [
+      email,
+    ]);
 
     return answer.rows[0];
   }
@@ -47,19 +46,11 @@ class AuthService {
 
   static async me(userId) {
     const answer = await pool.query(
-      `
-        SELECT
-          u.id AS user_id,
-          p.name,
-          p.surname,
-          p.birthday,
-          p.status,
-          u.email,
-          s.name AS city
-        FROM players AS p
-          JOIN users AS u ON u.id = p.user_id
-          JOIN cities AS s ON s.id = p.city_id
-          WHERE u.id = $1`,
+      `SELECT
+          u.id user_id,
+          u.email
+        FROM users u
+        WHERE u.id = $1`,
       [userId],
     );
     return answer.rows[0];

@@ -1,0 +1,13 @@
+@import "../../scss/mixins/flex_mixins";
+
+.LoaderSVG {
+  height: 100vh;
+  background-color: #232e3f;
+  @include flex-center;
+
+  svg {
+    width: 300px;
+    height: 300px;
+    color: #fff;
+  }
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from 'react-router-dom'
 import s from "./Login.module.scss";
 
 import loginImage from "../../assets/images/loginImage.jpg";
@@ -13,6 +14,7 @@ function Login() {
   const dispatch = useDispatch();
   const email = useSelector((store) => store.login.email);
   const password = useSelector((store) => store.login.password);
+  const isAuth = useSelector((store) => store.auth.isAuth);
 
   function handleChangeEmail(e) {
     dispatch(changeEmail(e.target.value));
@@ -22,6 +24,10 @@ function Login() {
   }
   function handleConfirm() {
     dispatch(loginTC({ email, password}));
+  }
+
+  if (isAuth) {
+    return <Navigate to='/home' />
   }
 
   return (
