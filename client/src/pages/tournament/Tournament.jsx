@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import s from "./Tournament.module.scss";
-// import closeIcon from "../../assets/icons/svg_pack/Black/Regular/Close.svg";
 import closeIcon from "@icons/Black/Regular/Close.svg";
-import ArrowInput from "../../components/ArrowInput/ArrowInput";
+import ArrowInput from "@components/ArrowInput/ArrowInput";
 
 function Tournament() {
   const [showNotice, setShowNotice] = useState(true);

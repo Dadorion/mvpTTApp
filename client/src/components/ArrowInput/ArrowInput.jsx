@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import caretLeftIcon from "../../assets/icons/svg_pack/Black/Regular/CaretLeft.svg";
-import caretRightIcon from "../../assets/icons/svg_pack/Black/Regular/CaretRight.svg";
+import caretLeftIcon from "@icons/Black/Regular/CaretLeft.svg";
+import caretRightIcon from "@icons/Black/Regular/CaretRight.svg";
 
 import s from "./ArrowInput.module.scss";
 
