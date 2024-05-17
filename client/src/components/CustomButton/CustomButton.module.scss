@@ -1,0 +1,12 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.CustomButton {
+  @include flex_mix(column, center, center);
+
+  border-radius: 2.5rem;
+  padding: 1.5rem 0.75rem;
+  width: 100%;
+
+  background: $Disabled-grey;
+}

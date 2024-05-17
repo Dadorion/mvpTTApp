@@ -5,7 +5,8 @@
 // $font-second: 'Ubuntu Mono', sans-serif;
 
 // Colors
-$Background: #fff;
+$Background: #f8f7f8;
+$Primary: #fff;
 $Basic-text: #333;
 $Main-dark: #123741;
 $Main-main: #385a64;
@@ -22,12 +23,12 @@ $Accent-Green_light: #8cbb9a;
 $Accent-Blue_dark: #151f47;
 $Accent-Blue: #424a6d;
 $Accent-Blue_light: #8e96b6;
-$Disabled-grey: #999;
+$Disabled-grey: #E1E1E1;
 $Negative-red: #e36a6a;
 $Light-grey: #d9d9d9;
 
 // breakpoints
-$breakpoint_xxl: 1200px;
-$breakpoint_xl: 1024px;
-$breakpoint_md: 767px;
-$breakpoint_sm: 576px;
+$breakpoint_xxl: 75rem;
+$breakpoint_xl: 64rem;
+$breakpoint_md: 47.9375rem;
+$breakpoint_sm: 36rem;

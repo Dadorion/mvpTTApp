@@ -15,7 +15,7 @@ html {
   color: $Basic-text;
   user-select: none;
 
-  font-size: 16px;
+  font-size: 1rem;
 }
 
 html::-webkit-scrollbar {
@@ -55,7 +55,7 @@ code {
 }
 
 ::-webkit-scrollbar {
-  width: 0px;
+  width: 0rem;
 }
 
 a {
@@ -76,10 +76,12 @@ input {
 }
 
 h1 {
-  font-size: 1.75rem;
-  font-style: normal;
+  font-family: var(--font-family);
   font-weight: 400;
-  line-height: normal;
+  font-size: 1.5rem;
+  line-height: 100%;
+  text-align: center;
+  color: var(--text-color);
 }
 
 h2 {
