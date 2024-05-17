@@ -1,9 +1,9 @@
 @import "../../scss/mixins/flex_mixins";
 
 .Tournament {
-   height: 100vh;
+  height: 100vh;
 
-   @include flex-mix(column, center, center);
+  @include flex-mix(column, center, center);
 
   h1 {
     color: #ccd3dc;
@@ -12,5 +12,32 @@
   }
   h2 {
     color: #ccd3dc;
+  }
+
+  .notice {
+    @include flex-mix(row, center, start);
+
+    margin-top: 2rem;
+    padding: 0.8rem 0.6rem;
+    border-radius: 0.3rem;
+
+    background-color: #faef86;
+    font-weight: 600;
+
+    img {
+      margin: 0.5rem;
+    }
+  }
+  .settings_list {
+    border-radius: 20px;
+    padding: 12px 0px;
+    width: 100%;
+
+    box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1);
+    background: var(--background);
+
+    .settings_list_item {
+      @include flex-mix(row, space-between, center);
+    }
   }
 }

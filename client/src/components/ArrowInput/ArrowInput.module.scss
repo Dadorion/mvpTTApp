@@ -1,0 +1,26 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/_flex_mixins";
+
+.ArrowInput {
+  @include flex-mix(row, space-between, center);
+  // @include flex-center;
+
+  height: 32px;
+
+  .btn {
+    width: 30px;
+    height: 30px;
+    background-color: $Background;
+
+    &:hover {
+      background-color: #f1f1f1;
+    }
+  }
+  .invisible {
+    opacity: 0.2;
+  }
+
+  p {
+    text-align: center;
+  }
+}
