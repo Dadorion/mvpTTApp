@@ -41,31 +41,10 @@ import s from "./ArrowInput.module.scss";
  * export default ExampleComponent;
  */
 
-function ArrowInput({
-  numbers,
-  score,
-  system,
-  category,
-  step = 1,
-  start = 1,
-  end = 7,
-}) {
-  const listCategory = ["личный", "парный"];
-  const listScore = ["сумма по партиям", "простой", "официальный"];
-  const listSystem = ["круговая"];
-
-  let arr = [];
-  if (score) {
-    arr = listScore;
-  } else if (system) {
-    arr = listSystem;
-  } else if (category) {
-    arr = listCategory;
-  }
-
+function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
   const stepNum = Number(step);
   const startNum = Number(start);
-  const endNum = numbers ? Number(end) : arr.length;
+  const endNum = numbers ? Number(end) : list.length;
 
   const [position, setPosition] = useState(startNum);
   const [leftBtnClass, setLeftBtnClass] = useState(s.btn);
@@ -102,10 +81,10 @@ function ArrowInput({
       <button type="button" onClick={handlerDecrement} className={leftBtnClass}>
         <img src={caretLeftIcon} alt="caretLeftIcon" />
       </button>
+
       {numbers && <p>{position}</p>}
-      {score && <p>{listScore[position - 1]}</p>}
-      {system && <p>{listSystem[position - 1]}</p>}
-      {category && <p>{listCategory[position - 1]}</p>}
+      {list && <p>{list[position - 1]}</p>}
+
       <button
         type="button"
         onClick={handlerIncrement}
