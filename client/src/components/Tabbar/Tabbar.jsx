@@ -29,7 +29,7 @@ function Tabbar() {
         </div>
 
         <div className={currentPath === "/counter" ? s.active : s.deactivated}>
-          <Link to="/counter">
+          <Link to="/tournaments">
             <img
               src={tournamentIcon}
               alt="tournamentIcon"

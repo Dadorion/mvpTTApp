@@ -12,7 +12,7 @@ html {
   background: $Background;
   height: 100%;
   width: 100%;
-  color: $Basic-text;
+  color: $Text-color;
   user-select: none;
 
   font-size: 1rem;
@@ -59,7 +59,7 @@ code {
 }
 
 a {
-  color: $Main-main;
+  color: $Text-color;
   margin: 0;
   padding: 0;
 }
@@ -81,7 +81,7 @@ h1 {
   font-size: 1.5rem;
   line-height: 100%;
   text-align: center;
-  color: var(--text-color);
+  color: $Text-color;
 }
 
 h2 {

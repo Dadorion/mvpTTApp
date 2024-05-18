@@ -1,0 +1,21 @@
+@import "./../../scss/base/_vars";
+
+.header {
+  width: 100%;
+
+  display: grid;
+  grid-template-columns: 3.125rem auto 3.125rem;
+  justify-content: space-between;
+  text-align: center;
+
+  p {
+    color: $Text-color;
+    opacity: 0.6;
+    display: flex;
+    align-items: center;
+  }
+
+  .tapArea {
+    padding: 0.1875rem 0.375rem 0.1875rem 0.25rem;
+  }
+}

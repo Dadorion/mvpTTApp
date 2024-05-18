@@ -5,6 +5,7 @@ import HomePage from "../homePage/HomePage";
 import Profile from "../profile/Profile";
 import Tabbar from "../../components/Tabbar/Tabbar";
 import Tournament from "../tournament/Tournament";
+import Players from "../players/Players";
 
 function Content() {
   return (
@@ -12,8 +13,10 @@ function Content() {
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/counter" element={<Tournament />} />
+        <Route path="/tournaments" element={<Tournament />} />
         <Route path="/profile" element={<Profile />} />
+
+        <Route path="/players" element={<Players />} />
       </Routes>
       <Tabbar />
     </div>

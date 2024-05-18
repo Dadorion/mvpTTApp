@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import s from "./Tournament.module.scss";
 import closeIcon from "@icons/Black/Regular/Close.svg";
 import questIcon from "@icons/Black/Light/Question_light.svg";
@@ -63,10 +64,12 @@ function Tournament() {
       <div className={s.players}>
         <h3>Участники турнира</h3>
         <div className={s.players_list}>
-          <div className={s.add_btn}>
-            <img src={userPlusIcon} alt="userPlusIcon" />
-            Добавить
-          </div>
+          <Link to="/players">
+            <div className={s.add_btn}>
+              <img src={userPlusIcon} alt="userPlusIcon" />
+              Добавить
+            </div>
+          </Link>
         </div>
       </div>
 
