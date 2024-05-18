@@ -4,6 +4,8 @@
 .CustomButton {
   @include flex_mix(column, center, center);
 
+  width: 100%;
+  margin: 1.375rem 0rem 1.5rem 0rem;
   border-radius: 2.5rem;
   padding: 1.5rem 0.75rem;
   width: 100%;

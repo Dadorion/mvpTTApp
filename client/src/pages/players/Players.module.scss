@@ -7,9 +7,51 @@
   padding: 2.75rem 1rem 0rem 1rem;
 
   height: 100vh;
-  background-color: lightblue;
 
-  button {
-    margin: 1rem;
+  .check_counter {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    color: $Secondary;
+
+    .indicator {
+      @include flex-mix(row, flex-start, center);
+
+      .countSuccess {
+        color: $Success-green;
+      }
+      .countError {
+        color: $Error-red;
+      }
+    }
+  }
+  .sort {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    margin-top: 0.75rem;
+
+    .swap {
+      @include flex-mix(row, space-between, center);
+    }
+  }
+  .add_player_btn {
+    @include flex-mix(row, flex-start, center);
+
+    width: 100%;
+    margin-top: 1.25rem;
+    color: $Secondary;
+
+    img {
+      margin-right: 0.75rem;
+    }
+  }
+  .list_players {
+    @include flex-mix(column, center, flex-start);
+
+    width: 100%;
+  }
+  .confirm_btn {
+    width: 100%;
   }
 }

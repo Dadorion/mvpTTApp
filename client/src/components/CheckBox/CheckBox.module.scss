@@ -1,0 +1,49 @@
+@import "../../scss/base/vars";
+
+.customCheckbox {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  width: 100%;
+  border-bottom: 0.0625rem solid $Disabled-grey;
+  padding: 0.5rem 0rem;
+
+  .checkboxInput {
+    display: none;
+  }
+
+  .checkMark {
+    width: 1.5rem;
+    height: 1.5rem;
+    background-color: #f0f0f0;
+    border: 0.0625rem solid #dcdcdc;
+    border-radius: 0.1875rem;
+    position: relative;
+    margin-right: 0.625rem;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .checkboxInput:checked + .checkMark {
+    background-color: $Success-green;
+    border-color: $Success-green;
+  }
+
+  .checkboxInput:checked + .checkMark::after {
+    content: "";
+    width: 0.6rem;
+    height: 1rem;
+    border: solid white;
+    border-width: 0 0.125rem 0.125rem 0;
+    transform: rotate(45deg);
+  }
+
+  .labelTextSuccess {
+    color: $Success-green;
+  }
+  .labelText {
+    color: $Text-color;
+  }
+}
