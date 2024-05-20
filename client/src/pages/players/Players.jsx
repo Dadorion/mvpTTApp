@@ -53,6 +53,9 @@ function Players() {
 
   const [players, setPlayers] = useState(playersAnswer);
   const [countPlayers, setCountPlayers] = useState(0);
+  const [showInput, setShowInput] = useState(false);
+  const [newPlayerName, setNewPlayerName] = useState("");
+  const [newPlayerSurname, setNewPlayerSurname] = useState("");
 
   useEffect(() => {
     const count = players.filter((player) => player.isChecked).length;
@@ -80,6 +83,25 @@ function Players() {
         };
       }),
     );
+  };
+  const handleShowInput = () => {
+    setShowInput(!showInput);
+  };
+  const handleAddPlayer = () => {
+    if (newPlayerName && newPlayerSurname) {
+      setPlayers([
+        ...players,
+        {
+          id: players.length + 1,
+          isChecked: false,
+          name: newPlayerName,
+          surname: newPlayerSurname,
+        },
+      ]);
+      setNewPlayerName("");
+      setNewPlayerSurname("");
+      setShowInput(false);
+    }
   };
 
   const countColor = countPlayers < 2 ? s.countError : s.countSuccess;
@@ -115,15 +137,38 @@ function Players() {
         <img src={searchIcon} alt="searchIcon" />
       </div>
 
-      <div className={s.add_player_btn}>
-        <img src={plusIcon} alt="plusIcon" />
-        Добавить нового игрока
-      </div>
+      {!showInput && (
+        <div className={s.add_player_btn} onClick={handleShowInput}>
+          <img src={plusIcon} alt="plusIcon" />
+          Добавить нового игрока
+        </div>
+      )}
+      {showInput && (
+        <div className={s.add_player_inputs}>
+          <input
+            type="text"
+            placeholder="Имя"
+            value={newPlayerName}
+            onChange={(e) => setNewPlayerName(e.target.value)}
+          />
+          <input
+            type="text"
+            placeholder="Фамилия"
+            value={newPlayerSurname}
+            onChange={(e) => setNewPlayerSurname(e.target.value)}
+          />
+          <img
+            src={plusIcon}
+            alt="plusIcon"
+            onClick={handleAddPlayer}
+          />
+        </div>
+      )}
 
       <div className={s.list_players}>{printPlayers}</div>
 
       <div className={s.confirm_btn}>
-        <CustomButton title="Добавить участников" disabled={countPlayers < 2}/>
+        <CustomButton title="Добавить участников" disabled={countPlayers < 2} />
       </div>
     </div>
   );

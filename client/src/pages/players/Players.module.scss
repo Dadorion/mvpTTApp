@@ -52,6 +52,25 @@
       margin-right: 0.75rem;
     }
   }
+  .add_player_inputs {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    margin-top: 2rem;
+
+    input {
+      border: 0.0625rem solid $Disabled-grey;
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.5rem;
+
+      width: 8.875rem;
+      height: 1.8125rem;
+    }
+
+    img {
+      margin-right: 0.75rem;
+    }
+  }
   .list_players {
     @include flex-mix(column, flex-start, flex-start);
 
