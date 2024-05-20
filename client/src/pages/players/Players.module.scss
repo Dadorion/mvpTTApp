@@ -3,9 +3,8 @@
 
 .Players {
   @include flex-mix(column, flex-start, space-between);
-  
+
   height: calc(100vh - 4.375rem);
-  background-color: lightblue;
   position: relative;
   overflow: hidden;
 

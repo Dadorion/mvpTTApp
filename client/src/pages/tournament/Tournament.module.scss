@@ -2,11 +2,6 @@
 @import "../../scss/mixins/flex_mixins";
 
 .Tournament {
-  * {
-    outline: 0.0625rem solid green;
-  }
-  background-color: lightblue;
-
   @include flex-mix(column, flex-start, center);
 
   position: relative;
