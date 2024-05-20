@@ -3,15 +3,11 @@
 
 .Players {
   @include flex-mix(column, flex-start, space-between);
+  
   height: calc(100vh - 4.375rem);
-  // background-color: lightblue;
-
+  background-color: lightblue;
   position: relative;
   overflow: hidden;
-
-  // * {
-  //   outline: 0.0625rem solid green;
-  // }
 
   padding: 2.75rem 1rem 0rem 1rem;
 

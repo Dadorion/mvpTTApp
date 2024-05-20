@@ -47,8 +47,8 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
   const endNum = numbers ? Number(end) : list.length;
 
   const [position, setPosition] = useState(startNum);
-  const [leftBtnClass, setLeftBtnClass] = useState(s.btn);
-  const [rightBtnClass, setRightBtnClass] = useState(s.btn);
+  const [leftBtnClass, setLeftBtnClass] = useState(`${s.btn} ${s.leftColumn}`);
+  const [rightBtnClass, setRightBtnClass] = useState(`${s.btn} ${s.rightColumn}`);
 
   const handlerIncrement = () => {
     if (position + stepNum > endNum) return;
@@ -56,9 +56,9 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
     const newPosition = position + stepNum;
     setPosition(newPosition);
 
-    setLeftBtnClass(s.btn);
+    setLeftBtnClass(`${s.btn} ${s.leftColumn}`);
     if (newPosition >= endNum) {
-      setRightBtnClass(`${s.btn} ${s.invisible}`);
+      setRightBtnClass(`${s.invisible}`);
     }
   };
 
@@ -68,11 +68,9 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
     const newPosition = position - stepNum;
     setPosition(newPosition);
 
-    setRightBtnClass(s.btn);
+    setRightBtnClass(`${s.btn} ${s.rightColumn}`);
     if (newPosition <= 1) {
-      setLeftBtnClass(`${s.btn} ${s.invisible}`);
-    } else {
-      setLeftBtnClass(s.btn);
+      setLeftBtnClass(`${s.invisible}`);
     }
   };
 
@@ -82,8 +80,8 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
         <img src={caretLeftIcon} alt="caretLeftIcon" />
       </button>
 
-      {numbers && <p>{position}</p>}
-      {list && <p>{list[position - 1]}</p>}
+      <div className={s.centerColumn}>{numbers && <p>{position}</p>}
+      {list && <p>{list[position - 1]}</p>}</div>
 
       <button
         type="button"

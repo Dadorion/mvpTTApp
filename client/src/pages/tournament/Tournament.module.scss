@@ -2,14 +2,16 @@
 @import "../../scss/mixins/flex_mixins";
 
 .Tournament {
+  * {
+    outline: 0.0625rem solid green;
+  }
+  background-color: lightblue;
+
   @include flex-mix(column, flex-start, center);
 
-  height: 100vh;
-
-  border-radius: 1.25rem;
+  position: relative;
+  height: calc(100vh - 4.375rem);
   padding: 2.75rem 1rem 0rem 1rem;
-
-  background: var(--background);
 
   .notice {
     @include flex-mix(row, center, start);
@@ -35,7 +37,10 @@
     background: $Primary;
 
     .list_item {
-      @include flex-mix(row, space-between, center);
+      display: grid;
+      grid-template-columns: 2fr 3fr;
+      align-items: center;
+      gap: 1rem;
 
       padding: 0.75rem 1.25rem;
       background: $Primary;
@@ -43,11 +48,11 @@
       &:not(:last-child) {
         border-bottom: 0.0625rem solid $Disabled-grey;
       }
-      div {
+      .title {
         @include flex-mix(row, flex-start, center);
 
         img {
-          margin: 4px;
+          margin: 0.25rem;
         }
       }
     }
@@ -85,6 +90,13 @@
         filter: blur(0.625rem); // Добавляем размытие
       }
     }
+  }
+  .confirm_btn {
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
   }
 }
 

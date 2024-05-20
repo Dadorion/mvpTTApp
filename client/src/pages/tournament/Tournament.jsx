@@ -29,28 +29,28 @@ function Tournament() {
 
       <div className={s.settings_list}>
         <div className={s.list_item}>
-          <div>
+          <div className={s.title}>
             Разряд
             <img src={questIcon} alt="questIcon" />
           </div>
           <ArrowInput category list={["личный", "парный"]} />
         </div>
         <div className={s.list_item}>
-          <div>
+          <div className={s.title}>
             Круги
             <img src={questIcon} alt="questIcon" />
           </div>
           <ArrowInput numbers />
         </div>
         <div className={s.list_item}>
-          <div>
+          <div className={s.title}>
             Партии
             <img src={questIcon} alt="questIcon" />
           </div>
           <ArrowInput numbers step="2" />
         </div>
         <div className={s.list_item}>
-          <div>
+          <div className={s.title}>
             Итоги
             <img src={questIcon} alt="questIcon" />
           </div>
@@ -73,7 +73,9 @@ function Tournament() {
         </div>
       </div>
 
-      <CustomButton title="Начать турнир" />
+      <div className={s.confirm_btn}>
+        <CustomButton title="Начать турнир" />
+      </div>
     </div>
   );
 }

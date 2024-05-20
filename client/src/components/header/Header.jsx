@@ -10,7 +10,7 @@ import checkIcon from "../../assets/icons/svg_pack/White/Regular/Check.svg";
 function Header({ leftBtn, headName, rightBtn, confirm }) {
   return (
     <div className={s.header}>
-      <Link to={leftBtn}>
+      <Link to={`/${leftBtn}`}>
         <div className={s.tapArea}>
           {leftBtn && <img src={backIcon} alt="backIcon" />}
         </div>
