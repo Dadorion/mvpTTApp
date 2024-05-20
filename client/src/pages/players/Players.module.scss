@@ -16,6 +16,10 @@
     width: 100%;
     color: $Secondary;
 
+    span {
+      cursor: pointer;
+    }
+
     .indicator {
       @include flex-mix(row, flex-start, center);
 

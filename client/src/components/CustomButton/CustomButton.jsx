@@ -1,8 +1,10 @@
-import React, { /*useState*/ } from "react";
+import React from "react";
 import s from "./CustomButton.module.scss";
 
-function CustomButton({title}) {
-  return <div className={s.CustomButton}>{title}</div>;
+function CustomButton({title, disabled, onClick}) {
+  const btnStyle = disabled ? `${s.CustomButton} ${s.disabled}`:`${s.CustomButton} ${s.enabled}`
+
+  return <div className={btnStyle}>{title}</div>;
 }
 
 export default CustomButton;
