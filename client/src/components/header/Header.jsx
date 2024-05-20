@@ -16,7 +16,7 @@ function Header({ leftBtn, headName, rightBtn, confirm }) {
         </div>
       </Link>
 
-      <p>{headName}</p>
+      <h1>{headName}</h1>
 
       <Link to={rightBtn}>
         <div className={s.tapArea}>
