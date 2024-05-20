@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 
-import s from "./Tabbar.module.css";
+import s from "./Tabbar.module.scss";
 
 import profileIcon from "../../assets/icons/svg_pack/Black/Light/User_light.svg";
 import tournamentIcon from "../../assets/icons/svg_pack/Black/Light/Trophy_light.svg";
@@ -21,14 +21,14 @@ function Tabbar() {
   return (
     showTabbar && (
       <div className={s.Tabbar}>
-        <div className={currentPath === "/" ? s.active : s.deactivated}>
+        <div className={currentPath === "/home" ? s.active : s.deactivated}>
           <Link to="/home">
             <img src={homeIcon} alt="homeIcon" />
           </Link>
           <font>Главная</font>
         </div>
 
-        <div className={currentPath === "/counter" ? s.active : s.deactivated}>
+        <div className={currentPath === "/tournaments" ? s.active : s.deactivated}>
           <Link to="/tournaments">
             <img
               src={tournamentIcon}
