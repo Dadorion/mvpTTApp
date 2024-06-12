@@ -1,9 +1,10 @@
 @import "../../scss/mixins/flex_mixins";
+@import "../../scss/base/_vars";
 
 .Login {
   @include flex-mix(column, flex-start, stretch);
 
-  margin: 0 20px;
+  margin: 0 1.25rem;
 
   h1 {
     text-align: center;
@@ -15,22 +16,33 @@
     margin: 0;
     padding: 0;
   }
-
+  .error {
+    @include flex-mix(row, center, center);
+    margin-top: 1rem;
+    color: $Error-red;
+  }
   .hasAccount {
     @include flex-mix(row, center, center);
     margin-top: 3rem;
+
+    span {
+      margin-right: 0.25rem;
+    }
+    a {
+      color: $Secondary;
+    }
   }
 
   input {
     padding: 1rem 2rem;
     margin: 0.4rem 0;
     align-items: center;
-    gap: 10px;
+    gap: 0.625rem;
     flex-shrink: 0;
 
     border-radius: 0.3rem;
-    border: 1px solid #d9d9d9;
-    background: #fff;
+    border: 0.0625rem solid $Disabled-grey;
+    background: $Primary;
   }
 
   button {

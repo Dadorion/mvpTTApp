@@ -1,4 +1,8 @@
 import { authAPI } from "../../api/api";
+import {
+  changeEmail,
+  changePassword,
+} from "services/redux/reducers/login-reducer";
 
 const SET_USER_DATA = "auth/SET-USER-DATA";
 const LOGIN = "auth/LOGIN";
@@ -66,6 +70,8 @@ export function loginTC(formData) {
         isAuth: true,
       }),
     );
+    dispatch(changeEmail(""));
+    dispatch(changePassword(""));
   };
 }
 

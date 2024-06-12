@@ -1,5 +1,3 @@
-import { authAPI } from "../../api/api";
-
 const LOGIN = "login/LOGIN";
 const CHANGE_EMAIL = "login/CHANGE_EMAIL";
 const CHANGE_PASSWORD = "login/CHANGE_PASSWORD";
@@ -14,18 +12,6 @@ export function changeEmail(email) {
 }
 export function changePassword(password) {
   return { type: CHANGE_PASSWORD, payload: password };
-}
-
-export function loginTC(formData) {
-  return async (dispatch) => {
-    const response = await authAPI.login(formData);
-    const token = response.data
-
-    localStorage.setItem('token', token)
-
-    dispatch(changeEmail(""));
-    dispatch(changePassword(""));
-  };
 }
 
 function loginReducer(state = initialState, action) {
