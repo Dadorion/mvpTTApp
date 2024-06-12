@@ -7,6 +7,9 @@ import {
   setNewPasswordRepeat,
   changePasswordTC,
 } from "../../services/redux/reducers/profile-reducer";
+import {
+  logoutTC
+} from "../../services/redux/reducers/auth-reducer";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -38,6 +41,9 @@ function Profile() {
     dispatch(changePasswordTC(newPassword));
     setShowPasswordInput(!showPasswordInput);
   }
+  function handleLogout() {
+    dispatch(logoutTC());
+  }
 
   return (
     <div className={s.Profile}>
@@ -46,6 +52,10 @@ function Profile() {
 
       <button type="button" onClick={handleShowPasswordInput}>
         Изменить пароль
+      </button>
+
+      <button type="button" onClick={handleLogout}>
+        Выйти из профиля
       </button>
 
       {showPasswordInput && (

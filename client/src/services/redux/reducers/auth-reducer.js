@@ -10,6 +10,17 @@ const initialState = {
   isAuth: false,
 };
 
+function authReducer(state = initialState, action) {
+  switch (action.type) {
+    case SET_USER_DATA:
+      return updateUserData(state, action.payload);
+    case LOGIN:
+      return updateUserData(state, action.payload);
+    default:
+      return state;
+  }
+}
+
 export function setAuthUserData(payload) {
   return {
     type: SET_USER_DATA,
@@ -78,17 +89,6 @@ function updateUserData(state, payload) {
     ...state,
     ...payload,
   };
-}
-
-function authReducer(state = initialState, action) {
-  switch (action.type) {
-    case SET_USER_DATA:
-      return updateUserData(state, action.payload);
-    case LOGIN:
-      return updateUserData(state, action.payload);
-    default:
-      return state;
-  }
 }
 
 export default authReducer;
