@@ -33,11 +33,6 @@ function Login() {
     setEffect(true);
   }
 
-  useEffect(() => {
-    <Navigate to="/home" />;
-    console.log("effect");
-  }, [effect]);
-
   if (isAuth) {
     return <Navigate to="/home" />;
   }

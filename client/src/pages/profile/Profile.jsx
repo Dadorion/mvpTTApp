@@ -6,10 +6,10 @@ import {
   setNewPassword,
   setNewPasswordRepeat,
   changePasswordTC,
-} from "../../services/redux/reducers/profile-reducer";
+} from "@reducers/profile-reducer";
 import {
   logoutTC
-} from "../../services/redux/reducers/auth-reducer";
+} from "@reducers/auth-reducer";
 
 function Profile() {
   const dispatch = useDispatch();
