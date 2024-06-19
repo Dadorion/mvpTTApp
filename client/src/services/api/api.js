@@ -28,7 +28,7 @@ instance.interceptors.request.use(
 export const authAPI = {
   async registration(formData) {
     try {
-      return await instance.post('auth/registration', formData);
+      return await instance.post("auth/registration", formData);
     } catch (e) {
       console.log(e);
       return null;
@@ -53,10 +53,30 @@ export const authAPI = {
 export const profileAPI = {
   async changePassword(newPassword) {
     try {
-      const response = await instance.post('api/profile', newPassword)
+      const response = await instance.post("api/profile", newPassword);
       return response;
     } catch (error) {
       console.error("Ошибка смены пароля: ", error);
+      throw error;
+    }
+  },
+};
+export const playersAPI = {
+  async getPlayers() {
+    try {
+      const response = await instance.get("api/players");
+      return response;
+    } catch (error) {
+      console.error("Ошибка запроса игроков: ", error);
+      throw error;
+    }
+  },
+  async createNewPlayer(name, surname) {
+    try {
+      const response = await instance.post("api/players", { name, surname });
+      return response;
+    } catch (error) {
+      console.error("Ошибка добавления игрока: ", error);
       throw error;
     }
   },

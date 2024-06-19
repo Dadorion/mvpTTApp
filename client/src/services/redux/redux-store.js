@@ -11,13 +11,15 @@ import appReducer from "./reducers/app-reducer";
 import profileReducer from "./reducers/profile-reducer";
 import registrationReducer from "./reducers/registration-reducer";
 import loginReducer from "./reducers/login-reducer";
+import playersReducer from "./reducers/players-reducer";
 
 const reducers = combineReducers({
   auth: authReducer,
   app: appReducer,
   profile: profileReducer,
   registration: registrationReducer,
-  login: loginReducer
+  login: loginReducer,
+  players: playersReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -1,8 +1,6 @@
 import pool from "../../config/database.js";
 
 class ProfileService {
-
-
   static async getMyProfile(id) {
 
 

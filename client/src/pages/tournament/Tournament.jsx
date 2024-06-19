@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import s from "./Tournament.module.scss";
 import closeIcon from "@icons/Black/Regular/Close.svg";
@@ -8,6 +9,7 @@ import ArrowInput from "@components/ArrowInput/ArrowInput";
 import CustomButton from "@components/CustomButton/CustomButton";
 
 function Tournament() {
+  const playersState = useSelector((store) => store.players.allUserPlayers);
   const [showNotice, setShowNotice] = useState(true);
 
   function handleCloseNotice() {
@@ -64,12 +66,15 @@ function Tournament() {
       <div className={s.players}>
         <h3>Участники турнира</h3>
         <div className={s.players_list}>
-          <Link to="/players">
-            <div className={s.add_btn}>
-              <img src={userPlusIcon} alt="userPlusIcon" />
-              Добавить
-            </div>
-          </Link>
+          {playersState.length === 0 && (
+            <Link to="/players">
+              <div className={s.add_btn}>
+                <img src={userPlusIcon} alt="userPlusIcon" />
+                Добавить
+              </div>
+            </Link>
+          )}
+          {playersState.length > 0 && <div>{playersState}</div>}
         </div>
       </div>
 

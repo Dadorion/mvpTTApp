@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import s from "./Login.module.scss";
@@ -7,15 +7,14 @@ import loginImage from "assets/images/loginImage.jpg";
 import {
   changeEmail,
   changePassword,
-} from "services/redux/reducers/login-reducer";
-import { loginTC } from "services/redux/reducers/auth-reducer";
+} from "@reducers/login-reducer";
+import { loginTC } from "@reducers/auth-reducer";
 
 function Login() {
   const dispatch = useDispatch();
   const email = useSelector((store) => store.login.email);
   const password = useSelector((store) => store.login.password);
   const isAuth = useSelector((store) => store.auth.isAuth);
-  const [effect, setEffect] = useState(false);
   const [error, setError] = useState('');
 
   function handleChangeEmail(e) {
@@ -30,7 +29,6 @@ function Login() {
       return
     };
     dispatch(loginTC({ email, password }));
-    setEffect(true);
   }
 
   if (isAuth) {
