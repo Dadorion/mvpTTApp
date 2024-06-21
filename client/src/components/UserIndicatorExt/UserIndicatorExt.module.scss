@@ -1,0 +1,25 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.check_counter {
+  @include flex-mix(row, space-between, center);
+  width: 100%;
+  color: $Secondary;
+
+  margin-top: 0.75rem;
+
+  span {
+    cursor: pointer;
+  }
+
+  .indicator {
+    @include flex-mix(row, flex-start, center);
+
+    .countSuccess {
+      color: $Success-green;
+    }
+    .countError {
+      color: $Error-red;
+    }
+  }
+}

@@ -1,20 +1,60 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  changeUserPlayers,
+  changeCountPlayers,
+} from "@reducers/players-reducer";
 import { Link } from "react-router-dom";
+
 import s from "./Tournament.module.scss";
+
 import closeIcon from "@icons/Black/Regular/Close.svg";
 import questIcon from "@icons/Black/Light/Question_light.svg";
 import userPlusIcon from "@icons/Black/Regular/UserPlus.svg";
+
 import ArrowInput from "@components/ArrowInput/ArrowInput";
 import CustomButton from "@components/CustomButton/CustomButton";
+import CheckBox from "@components/CheckBox/CheckBox";
+import UserIndicatorExt from "components/UserIndicatorExt/UserIndicatorExt";
 
 function Tournament() {
+  const dispatch = useDispatch();
+
   const playersState = useSelector((store) => store.players.allUserPlayers);
+  const checkedPlayers = playersState.filter((p) => (p.isChecked ? p : null));
+  const countPlayers = useSelector(
+    (store) => store.players.countCheckedPlayers,
+  );
+
   const [showNotice, setShowNotice] = useState(true);
 
   function handleCloseNotice() {
     setShowNotice(false);
   }
+
+  const handleUncheckCheckBox = () => {
+    dispatch(
+      changeUserPlayers(
+        playersState.map((player) => {
+          return {
+            ...player,
+            isChecked: false,
+          };
+        }),
+      ),
+    );
+    dispatch(changeCountPlayers(0));
+  };
+
+  const printPlayers = checkedPlayers.map((player) => {
+    return (
+      <CheckBox
+        key={player.id}
+        label={`${player.p_name} ${player.p_surname}`}
+        disabled
+      />
+    );
+  });
 
   return (
     <div className={s.Tournament}>
@@ -65,17 +105,24 @@ function Tournament() {
 
       <div className={s.players}>
         <h3>Участники турнира</h3>
-        <div className={s.players_list}>
-          {playersState.length === 0 && (
-            <Link to="/players">
-              <div className={s.add_btn}>
-                <img src={userPlusIcon} alt="userPlusIcon" />
-                Добавить
-              </div>
-            </Link>
-          )}
-          {playersState.length > 0 && <div>{playersState}</div>}
-        </div>
+
+        {countPlayers === 0 && (
+          <Link to="/players">
+            <div className={s.add_btn}>
+              <img src={userPlusIcon} alt="userPlusIcon" />
+              Добавить
+            </div>
+          </Link>
+        )}
+        {countPlayers > 0 && (
+          <div className={s.players_list}>
+            <UserIndicatorExt
+              onClick={handleUncheckCheckBox}
+              countPlayers={countPlayers}
+            />
+            <div className={s.list}>{printPlayers}</div>
+          </div>
+        )}
       </div>
 
       <div className={s.confirm_btn}>

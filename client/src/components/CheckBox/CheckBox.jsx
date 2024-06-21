@@ -1,10 +1,7 @@
 import React from "react";
 import s from "./CheckBox.module.scss";
 
-function CheckBox({ label, isChecked, onChange }) {
-
-
-
+function CheckBox({ label, isChecked, onChange, disabled = false }) {
   const textColor = isChecked ? s.labelTextSuccess : s.labelText;
 
   return (
@@ -15,7 +12,7 @@ function CheckBox({ label, isChecked, onChange }) {
         onChange={onChange}
         className={s.checkboxInput}
       />
-      <span className={s.checkMark}></span>
+      {!disabled && <span className={s.checkMark}></span>}
       <span className={textColor}>{label}</span>
     </label>
   );

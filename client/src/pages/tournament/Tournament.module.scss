@@ -53,36 +53,46 @@
     }
   }
   .players {
+    @include flex_mix(column, center, center);
+
     margin: 2rem 0rem 2.25rem 0rem;
+    width: 100%;
+
+    .players_list {
+      width: 100%;
+
+      width: 100%;
+
+      .list {
+        @include flex_mix(column, flex-start, center);
+        width: 100%;
+        overflow: hidden;
+      }
+    }
 
     .add_btn {
       @include flex_mix(column, center, center);
-      position: relative; // Добавляем позиционирование
+      position: relative;
+      width: 50%;
 
       margin: 2.25rem;
       img {
         margin: 0.625rem;
       }
 
-      // Добавляем анимацию пульсации
       &:before {
         content: "";
         position: absolute;
         top: 0;
         left: 0;
         transform: translate(-50%, -50%);
-        width: 100%; /* Размер анимации, подстраивайте под ваш дизайн */
-        height: 100%; /* Размер анимации, подстраивайте под ваш дизайн */
+        width: 100%;
+        height: 100%;
         border-radius: 50%;
-        background-color: rgba(
-          148,
-          184,
-          231,
-          0.3
-        ); /* Цвет анимации, подстраивайте под ваш дизайн */
-        animation: pulse-animation 2s infinite; /* Длительность анимации и бесконечное повторение */
-        z-index: -1; // Помещаем анимацию позади содержимого контейнера
-        filter: blur(0.625rem); // Добавляем размытие
+        background-color: rgba(148, 184, 231, 0.3);
+        animation: pulse-animation 2s infinite;
+        z-index: -1;
+        filter: blur(0.625rem);
       }
     }
   }
