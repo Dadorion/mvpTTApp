@@ -1,9 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import {
-  changeUserPlayers,
-  changeCountPlayers,
-} from "@reducers/players-reducer";
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import s from "./Tournament.module.scss";
@@ -15,11 +11,9 @@ import userPlusIcon from "@icons/Black/Regular/UserPlus.svg";
 import ArrowInput from "@components/ArrowInput/ArrowInput";
 import CustomButton from "@components/CustomButton/CustomButton";
 import CheckBox from "@components/CheckBox/CheckBox";
-import UserIndicatorExt from "components/UserIndicatorExt/UserIndicatorExt";
+import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
 function Tournament() {
-  const dispatch = useDispatch();
-
   const playersState = useSelector((store) => store.players.allUserPlayers);
   const checkedPlayers = playersState.filter((p) => (p.isChecked ? p : null));
   const countPlayers = useSelector(
@@ -31,20 +25,6 @@ function Tournament() {
   function handleCloseNotice() {
     setShowNotice(false);
   }
-
-  const handleUncheckCheckBox = () => {
-    dispatch(
-      changeUserPlayers(
-        playersState.map((player) => {
-          return {
-            ...player,
-            isChecked: false,
-          };
-        }),
-      ),
-    );
-    dispatch(changeCountPlayers(0));
-  };
 
   const printPlayers = checkedPlayers.map((player) => {
     return (
@@ -117,8 +97,9 @@ function Tournament() {
         {countPlayers > 0 && (
           <div className={s.players_list}>
             <UserIndicatorExt
-              onClick={handleUncheckCheckBox}
+              btnName={"Изменить"}
               countPlayers={countPlayers}
+              link={"players"}
             />
             <div className={s.list}>{printPlayers}</div>
           </div>
@@ -126,7 +107,7 @@ function Tournament() {
       </div>
 
       <div className={s.confirm_btn}>
-        <CustomButton title="Начать турнир" />
+        <CustomButton title="Начать турнир" disabled={countPlayers < 2} />
       </div>
     </div>
   );

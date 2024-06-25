@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 
 import {
   setAllUserPlayersTC,
@@ -28,7 +29,9 @@ function Players() {
     dispatch(setAllUserPlayersTC());
   }
 
-  const countPlayers = useSelector((store) => store.players.countCheckedPlayers);
+  const countPlayers = useSelector(
+    (store) => store.players.countCheckedPlayers,
+  );
   const [showInput, setShowInput] = useState(false);
   const [newPlayerName, setNewPlayerName] = useState("");
   const [newPlayerSurname, setNewPlayerSurname] = useState("");
@@ -64,6 +67,7 @@ function Players() {
         }),
       ),
     );
+    dispatch(changeCountPlayers(0));
   };
 
   const handleShowInput = () => {
@@ -79,10 +83,6 @@ function Players() {
     }
   };
 
-  const handleConfirmPlayer = () => {
-    dispatch(setAllUserPlayersTC());
-  };
-
   const printPlayers = playersState.map((player) => {
     return (
       <CheckBox
@@ -96,9 +96,14 @@ function Players() {
 
   return (
     <div className={s.Players}>
-      <Header headName={"Выбор участников"} leftBtn={"tournaments"} />
+      <Header
+        headName={"Выбор участников"}
+        leftBtnLink={"tournaments"}
+        leftBtnHandler={handleUncheckCheckBox}
+      />
 
       <UserIndicatorExt
+        btnName={"Снять все"}
         onClick={handleUncheckCheckBox}
         countPlayers={countPlayers}
       />
@@ -137,13 +142,14 @@ function Players() {
 
       <div className={s.list_players}>{printPlayers}</div>
 
-      <div className={s.confirm_btn}>
-        <CustomButton
-          title="Добавить участников"
-          disabled={countPlayers < 2}
-          onClick={handleConfirmPlayer}
-        />
-      </div>
+      <Link to={`/tournaments`}>
+        <div className={s.confirm_btn}>
+          <CustomButton
+            title="Добавить участников"
+            disabled={countPlayers < 2}
+          />
+        </div>
+      </Link>
     </div>
   );
 }

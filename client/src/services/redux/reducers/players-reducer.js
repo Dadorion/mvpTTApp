@@ -6,7 +6,7 @@ const CHANGE_COUNT_PLAYERS = "players/CHANGE_COUNT_PLAYERS";
 
 const initialState = {
   allUserPlayers: [],
-  countCheckedPlayers: 0
+  countCheckedPlayers: 0,
 };
 
 function playersReducer(state = initialState, action) {
@@ -61,6 +61,7 @@ export function addNewUserPlayerTC(name, surname) {
     const response = await playersAPI.getPlayers();
     const players = response.data.body;
 
+    dispatch(setAllUserPlayers(players));
     dispatch(setAllUserPlayers(players));
   };
 }

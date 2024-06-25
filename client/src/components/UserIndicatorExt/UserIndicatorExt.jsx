@@ -1,12 +1,13 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import s from "./UserIndicatorExt.module.scss";
 
 import userRedIcon from "@icons/Colored/User_red.svg";
 import userGreenIcon from "@icons/Colored/User_green.svg";
 
-function UserIndicatorExt({ count = 2, onClick, countPlayers }) {
-  const condition = count >= 2;
+function UserIndicatorExt({ onClick, countPlayers, btnName, link }) {
+  const condition = countPlayers >= 2;
   const countColor = countPlayers < 2 ? s.countError : s.countSuccess;
 
   return (
@@ -20,7 +21,12 @@ function UserIndicatorExt({ count = 2, onClick, countPlayers }) {
           )}
           <div className={countColor}>{countPlayers}</div>
         </div>
-        <span onClick={onClick}>Снять все</span>
+        {link && (
+          <Link to={`/${link}`}>
+            <span>{btnName}</span>
+          </Link>
+        )}
+        {!link && <span onClick={onClick}>{btnName}</span>}
       </div>
     </div>
   );
