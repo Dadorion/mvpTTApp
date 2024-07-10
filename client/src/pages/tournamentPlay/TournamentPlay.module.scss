@@ -1,0 +1,12 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.TournamentPlay {
+  @include flex-mix(column, flex-start, center);
+
+  outline: 1px solid red;
+
+  position: relative;
+  height: calc(100vh - 4.375rem);
+  padding: 2.75rem 1rem 0rem 1rem;
+}

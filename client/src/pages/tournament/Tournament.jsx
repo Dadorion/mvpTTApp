@@ -106,9 +106,12 @@ function Tournament() {
         )}
       </div>
 
-      <div className={s.confirm_btn}>
-        <CustomButton title="Начать турнир" disabled={countPlayers < 2} />
-      </div>
+      <Link to={`/tournament-play`}>
+        {/*Деактивировать переход по ссылке, если игроки не выбраны*/}
+        <div className={s.confirm_btn}>
+          <CustomButton title="Начать турнир" disabled={countPlayers < 2} />
+        </div>
+      </Link>
     </div>
   );
 }
