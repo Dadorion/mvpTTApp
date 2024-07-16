@@ -1,0 +1,36 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.Match {
+  @include flex-mix(column, flex-start, center);
+
+  margin-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 0.0625rem solid $Disabled-grey;
+
+  .slot {
+    display: grid;
+    grid-template-columns: 1fr 80px 1fr;
+
+    align-items: center;
+    justify-items: center;
+
+    width: 100%;
+
+    .scoring {
+      @include flex-mix(row, center, center);
+      gap: 2px;
+
+
+      .name_right {
+        margin: 0.5rem;
+      }
+      .name_left {
+        margin: 0.5rem;
+      }
+      .inp {
+        padding: 0.25rem;
+      }
+    }
+  }
+}

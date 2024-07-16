@@ -3,10 +3,12 @@ import { playersAPI } from "../../api/api";
 const SET_PLAYERS = "players/SET_PLAYERS";
 const CHANGE_PLAYERS = "players/CHANGE_PLAYERS";
 const CHANGE_COUNT_PLAYERS = "players/CHANGE_COUNT_PLAYERS";
+const CHANGE_CHECKED_PLAYERS = "players/CHANGE_CHECKED_PLAYERS";
 
 const initialState = {
   allUserPlayers: [],
   countCheckedPlayers: 0,
+  checkedPlayers: [],
 };
 
 function playersReducer(state = initialState, action) {
@@ -32,6 +34,14 @@ function playersReducer(state = initialState, action) {
         ...state,
         countCheckedPlayers: action.payload,
       };
+    case CHANGE_CHECKED_PLAYERS:
+      const checkedPlayers = state.allUserPlayers.filter(
+        (player) => player.isChecked,
+      );
+      return {
+        ...state,
+        checkedPlayers,
+      };
     default:
       return state;
   }
@@ -45,6 +55,9 @@ export function changeUserPlayers(list) {
 }
 export function changeCountPlayers(count) {
   return { type: CHANGE_COUNT_PLAYERS, payload: count };
+}
+export function changeCheckedPlayers() {
+  return { type: CHANGE_CHECKED_PLAYERS };
 }
 
 export function setAllUserPlayersTC() {

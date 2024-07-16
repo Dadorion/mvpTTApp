@@ -14,8 +14,7 @@ import CheckBox from "@components/CheckBox/CheckBox";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
 function Tournament() {
-  const playersState = useSelector((store) => store.players.allUserPlayers);
-  const checkedPlayers = playersState.filter((p) => (p.isChecked ? p : null));
+  const checkedPlayers = useSelector((store) => store.players.checkedPlayers);
   const countPlayers = useSelector(
     (store) => store.players.countCheckedPlayers,
   );
@@ -107,7 +106,7 @@ function Tournament() {
       </div>
 
       <Link to={`/tournament-play`}>
-        {/*Деактивировать переход по ссылке, если игроки не выбраны*/}
+        {/*TODO Деактивировать переход по ссылке, если игроки не выбраны*/}
         <div className={s.confirm_btn}>
           <CustomButton title="Начать турнир" disabled={countPlayers < 2} />
         </div>

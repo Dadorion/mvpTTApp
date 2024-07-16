@@ -7,6 +7,7 @@ import {
   addNewUserPlayerTC,
   changeUserPlayers,
   changeCountPlayers,
+  changeCheckedPlayers,
 } from "@reducers/players-reducer";
 
 import s from "./Players.module.scss";
@@ -83,6 +84,9 @@ function Players() {
     }
   };
 
+  const handleConfirmPlayersChoice = () => {
+    dispatch(changeCheckedPlayers());
+  };
   const printPlayers = playersState.map((player) => {
     return (
       <CheckBox
@@ -147,6 +151,7 @@ function Players() {
           <CustomButton
             title="Добавить участников"
             disabled={countPlayers < 2}
+            onClick={handleConfirmPlayersChoice}
           />
         </div>
       </Link>

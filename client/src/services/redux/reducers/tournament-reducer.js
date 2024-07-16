@@ -1,6 +1,6 @@
 import { playersAPI } from "../../api/api";
 
-const SET_PLAYING = "players/SET_PLAYING";
+const SET_PLAYING = "tournament/SET_PLAYING";
 
 const initialState = {
   isPlaying: false
