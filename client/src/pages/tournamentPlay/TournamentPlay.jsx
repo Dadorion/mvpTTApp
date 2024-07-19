@@ -7,20 +7,19 @@ import s from "./TournamentPlay.module.scss";
 import Match from "components/Match/Match";
 
 import makeQueue from "services/queueAlg/queueAlg";
-import CustomButton from "components/CustomButton/CustomButton";
 import InputScore from "components/InputScore/InputScore";
 
 function TournamentPlay() {
   // const dispatch = useDispatch();
 
-  const [showInput, setShowInput] = useState(true);
+  const [showInput, setShowInput] = useState(false);
 
   const players = useSelector((store) => store.players.checkedPlayers);
 
   const queue = makeQueue(players);
 
-  const handleClickOnMatch = () => {
-    console.log("click on match");
+  const handleClickOnMatch = (e) => {
+    console.log(e);
   };
 
   const printQueue = queue.map((match) => {
@@ -46,9 +45,7 @@ function TournamentPlay() {
           <div className={s.matches}></div>
         </div>
 
-        {showInput && (
-          <InputScore />
-        )}
+        {showInput && <InputScore />}
       </div>
     </div>
   );

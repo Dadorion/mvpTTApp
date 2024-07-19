@@ -15,7 +15,8 @@ function Match({ players, score, onClick }) {
         <div className={s.slot}>
           <div className={s.name_left}>{firstPlayer}</div>
           <div className={s.scoring}>
-            <div className={s.inp}>{firsScore}</div>:
+            <div className={s.inp}>{firsScore}</div>
+            <div>:</div>
             <div className={s.inp}>{secondScore}</div>
           </div>
           <div className={s.name_right}>{secondPlayer}</div>

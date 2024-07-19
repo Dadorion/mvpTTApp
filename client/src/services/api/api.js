@@ -81,3 +81,51 @@ export const playersAPI = {
     }
   },
 };
+export const tournamentsAPI = {
+  async getAllTournaments() {
+    try {
+      const response = await instance.get("api/tournaments");
+      return response;
+    } catch (error) {
+      console.error("Ошибка запроса турниров: ", error);
+      throw error;
+    }
+  },
+  async getOneTournament(id) {
+    try {
+      const response = await instance.get("api/tournaments/" + id);
+      return response;
+    } catch (error) {
+      console.error("Ошибка запроса турниров: ", error);
+      throw error;
+    }
+  },
+  async createNewTournament() {
+    try {
+      const response = await instance.get("api/tournaments/add");
+      return response;
+    } catch (error) {
+      console.error("Ошибка создания турнира: ", error);
+      throw error;
+    }
+  },
+};
+export const matchesAPI = {
+  async addMatchesToTournament(
+    tournament_id,
+    first_team_score,
+    second_team_score,
+  ) {
+    try {
+      const response = await instance.post("api/matches", {
+        first_team_score,
+        second_team_score,
+        tournament_id,
+      });
+      return response;
+    } catch (error) {
+      console.error("Ошибка создания турнира: ", error);
+      throw error;
+    }
+  },
+};
