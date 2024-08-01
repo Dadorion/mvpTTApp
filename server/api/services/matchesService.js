@@ -1,15 +1,15 @@
 import pool from "../../config/database.js";
 
-class PlayersService {
-  static async getAll(userId) {
+class MatchesService {
+  static async getAll(lastTournament) {
     const answer = await pool.query(
-      "SELECT * FROM players WHERE user_id = $1",
-      [userId],
+      "SELECT * FROM matches WHERE tournament_id = $1",
+      [lastTournament],
     );
 
     const result = {
       pagination: {
-        playersCount: answer.rows.length,
+        matchesCount: answer.rows.length,
       },
 
       body: [...answer.rows],
@@ -18,13 +18,18 @@ class PlayersService {
     return result;
   }
 
-  static async createNewPlayer(userId, name, surname) {
-    const answer = await pool.query(
-      "INSERT INTO players (user_id, p_name, p_surname) VALUES ($1, $2, $3)",
-      [userId, name, surname],
-    );
-    return answer.rows
+  static async createNewMatches({ tournamentId, matches }) {
+    await pool.query("BEGIN");
+    for (const match of matches) {
+      await pool.query(
+        "INSERT INTO matches (tournament_id, f_player_id, s_player_id) VALUES ($1, $2, $3)",
+        [tournamentId, match.fPlayerId, match.sPlayerId],
+      );
+    }
+    await pool.query("END");
+
+    return "done";
   }
 }
 
-export default PlayersService;
+export default MatchesService;

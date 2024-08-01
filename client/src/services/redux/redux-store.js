@@ -13,6 +13,7 @@ import registrationReducer from "./reducers/registration-reducer";
 import loginReducer from "./reducers/login-reducer";
 import playersReducer from "./reducers/players-reducer";
 import tournamentReducer from "./reducers/tournament-reducer";
+import matchesReducer from "./reducers/matches-reducer";
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -21,7 +22,8 @@ const reducers = combineReducers({
   registration: registrationReducer,
   login: loginReducer,
   players: playersReducer,
-  tournament: tournamentReducer
+  tournament: tournamentReducer,
+  matches: matchesReducer
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

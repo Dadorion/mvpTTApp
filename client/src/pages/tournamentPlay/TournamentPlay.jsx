@@ -1,28 +1,31 @@
 import React, { useState } from "react";
-// import { useDispatch, useSelector } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import s from "./TournamentPlay.module.scss";
 
 import Match from "components/Match/Match";
 
-import makeQueue from "services/queueAlg/queueAlg";
 import InputScore from "components/InputScore/InputScore";
 
+import { setLastMatchesTC } from "@reducers/matches-reducer";
+
 function TournamentPlay() {
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
+
+  const lastMatches = useSelector((store) => store.matches.lastMatches);
+
+  if (lastMatches.length === 0) {
+    dispatch(setLastMatchesTC())
+  }
+
 
   const [showInput, setShowInput] = useState(false);
-
-  const players = useSelector((store) => store.players.checkedPlayers);
-
-  const queue = makeQueue(players);
 
   const handleClickOnMatch = (e) => {
     console.log(e);
   };
 
-  const printQueue = queue.map((match) => {
+  const printQueue = lastMatches.map((match) => {
     return (
       <Match
         key={match.id}

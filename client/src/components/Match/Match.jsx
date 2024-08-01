@@ -6,8 +6,8 @@ function Match({ players, score, onClick }) {
   const [firsScore, setFirstScore] = useState(2);
   const [secondScore, setSecondScore] = useState(1);
 
-  const firstPlayer = `${players[0].p_name} ${players[0].p_surname}`;
-  const secondPlayer = `${players[1].p_name} ${players[1].p_surname}`;
+  const firstPlayer = `${players[0].name} ${players[0].surname}`;
+  const secondPlayer = `${players[1].name} ${players[1].surname}`;
 
   return (
     <div className={s.Match} onClick={onClick}>

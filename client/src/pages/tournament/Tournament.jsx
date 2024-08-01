@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import s from "./Tournament.module.scss";
 
@@ -13,16 +14,39 @@ import CustomButton from "@components/CustomButton/CustomButton";
 import CheckBox from "@components/CheckBox/CheckBox";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
+import { setMatchesTC, checkTournamentOnAirTC } from "services/redux/reducers/tournament-reducer";
+import makeQueueRequest from "services/queueAlg/queueRequest";
+import TournamentPlay from "pages/tournamentPlay/TournamentPlay";
+
 function Tournament() {
+  const dispatch = useDispatch();
+
+  // уже здесь нужно проверить, есть ли не завершенный турнир. И, если в бд такого не найдется, тогда показываем настройки.
+  const isOnAir = useSelector((store) => store.tournament.onAir);
+
+  if (!isOnAir) {
+    dispatch(checkTournamentOnAirTC());
+  }
+
   const checkedPlayers = useSelector((store) => store.players.checkedPlayers);
   const countPlayers = useSelector(
     (store) => store.players.countCheckedPlayers,
   );
-
   const [showNotice, setShowNotice] = useState(true);
+
+  if (isOnAir) {
+    return <TournamentPlay />;
+  }
+
+  const queue = makeQueueRequest(checkedPlayers);
 
   function handleCloseNotice() {
     setShowNotice(false);
+  }
+  function handleStartTournament() {
+    dispatch(setMatchesTC(queue));
+
+    return <Navigate to="/tournament-play" />;
   }
 
   const printPlayers = checkedPlayers.map((player) => {
@@ -105,12 +129,14 @@ function Tournament() {
         )}
       </div>
 
-      <Link to={`/tournament-play`}>
-        {/*TODO Деактивировать переход по ссылке, если игроки не выбраны*/}
+
         <div className={s.confirm_btn}>
-          <CustomButton title="Начать турнир" disabled={countPlayers < 2} />
+          <CustomButton
+            title="Начать турнир"
+            disabled={countPlayers < 2}
+            onClick={handleStartTournament}
+          />
         </div>
-      </Link>
     </div>
   );
 }

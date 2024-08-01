@@ -27,6 +27,23 @@ class TournamentsService {
     return answer.rows;
   }
 
+  static async getLast(userId) {
+    const answer = await pool.query(
+      "SELECT id FROM tournaments WHERE user_id = $1 order by id desc LIMIT 1",
+      [userId],
+    );
+
+    return answer.rows[0];
+  }
+
+  static async check(userId) {
+    const answer = await pool.query(
+      "SELECT on_air FROM tournaments WHERE user_id = $1 order by id desc LIMIT 1",
+      [userId],
+    );
+    return answer.rows[0];
+  }
+
   static async add(userId) {
     const answer = await pool.query(
       "INSERT INTO tournaments (user_id) VALUES ($1) RETURNING id",

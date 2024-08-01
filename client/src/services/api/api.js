@@ -109,22 +109,36 @@ export const tournamentsAPI = {
       throw error;
     }
   },
+  async checkTournamentOnAir() {
+    try {
+      const response = await instance.get("api/tournaments/check");
+      return response;
+    } catch (error) {
+      console.error("Ошибка проверки турнира: ", error);
+      throw error;
+    }
+  },
 };
 export const matchesAPI = {
-  async addMatchesToTournament(
-    tournament_id,
-    first_team_score,
-    second_team_score,
-  ) {
+  async addMatchesToTournament({ tournamentId, matches }) {
     try {
       const response = await instance.post("api/matches", {
-        first_team_score,
-        second_team_score,
-        tournament_id,
+        tournamentId,
+        matches,
       });
       return response;
     } catch (error) {
-      console.error("Ошибка создания турнира: ", error);
+      console.error("Ошибка добавления матчей: ", error);
+      throw error;
+    }
+  },
+  async getLastMatches() {
+    try {
+      const response = await instance.get("api/matches/last");
+
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения матчей: ", error);
       throw error;
     }
   },

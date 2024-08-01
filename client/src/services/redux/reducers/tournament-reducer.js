@@ -2,6 +2,7 @@ import { playersAPI, tournamentsAPI, matchesAPI } from "../../api/api";
 
 const SET_PLAYING = "tournament/SET_PLAYING";
 const SET_MATCHES = "tournament/SET_MATCHES";
+const SET_ON_AIR = "tournament/SET_ON_AIR";
 
 const initialState = {
   onAir: false,
@@ -26,6 +27,11 @@ function tournamentReducer(state = initialState, action) {
         ...state,
         matches: action.payload,
       };
+    case SET_ON_AIR:
+      return {
+        ...state,
+        onAir: action.payload,
+      };
     default:
       return state;
   }
@@ -37,6 +43,9 @@ export function setAllUserPlayers(list) {
 export function setMatches(list) {
   return { type: SET_MATCHES, payload: list };
 }
+export function setOnAir(isOnAir) {
+  return { type: SET_ON_AIR, payload: isOnAir };
+}
 
 export function setAllUserPlayersTC() {
   return async (dispatch) => {
@@ -46,20 +55,30 @@ export function setAllUserPlayersTC() {
     dispatch(setAllUserPlayers(players));
   };
 }
-export function setMatchesTC() {
-  // tournamentsAPI, matchesAPI
+export function setMatchesTC(matches) {
   return async (dispatch) => {
     const responseTour = await tournamentsAPI.createNewTournament();
-    const tournamentId = responseTour.data.body; //TODO написать
+    const tournamentId = responseTour.data;
 
-    const responseMatch = await tournamentsAPI.createNewTournament(
+    const responseMatch = await matchesAPI.addMatchesToTournament({
       tournamentId,
-      // first_team_score, //TODO написать
-      // second_team_score,
-    );
-    const matches = responseMatch.data.body; //TODO написать
+      matches,
+    });
+    const isMatchesAdded = responseMatch.data;
+    console.log(isMatchesAdded);
+    if (isMatchesAdded) {
+      dispatch(setMatches(matches));
+      dispatch(setOnAir(true));
+    } else {
+      dispatch(setOnAir(false));
+    }
+  };
+}
+export function checkTournamentOnAirTC(matches) {
+  return async (dispatch) => {
+    const isOnAirResponse = await tournamentsAPI.checkTournamentOnAir();
 
-    dispatch(setMatches(matches));
+    dispatch(setOnAir(isOnAirResponse.data.on_air));
   };
 }
 

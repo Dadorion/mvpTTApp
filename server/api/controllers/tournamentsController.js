@@ -23,8 +23,7 @@ class TournamentsController {
   static async getOneTournament(req, res) {
     try {
       const { userId } = req.user;
-      const  tournamentId  = req.params.id;
-
+      const tournamentId = req.params.id;
 
       if (!userId) {
         res.status(400).json({ message: "We need ID number." });
@@ -36,6 +35,22 @@ class TournamentsController {
       }
 
       res.status(200).json(tournament);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  static async checkTournamentOnAir(req, res) {
+    try {
+      const { userId } = req.user;
+
+      if (!userId) {
+        res.status(400).json({ message: "We need ID number." });
+      }
+      const tournament = await TournamentsService.check(userId);
+
+      res.status(200).json(tournament);
+      // res.status(200).json(true);
     } catch (e) {
       res.status(500).json(e);
     }
@@ -59,7 +74,6 @@ class TournamentsController {
       res.status(500).json(e);
     }
   }
-
 }
 
 export default TournamentsController;
