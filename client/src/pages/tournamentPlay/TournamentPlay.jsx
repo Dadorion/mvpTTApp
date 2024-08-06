@@ -10,6 +10,14 @@ import InputScore from "components/InputScore/InputScore";
 import { setLastMatchesTC } from "@reducers/matches-reducer";
 import { addScoreToDataBaseTC } from "services/redux/reducers/matches-reducer";
 
+
+// [x] Прописать условия блокировки кнопки ОК при попытке отправить пустой счет матча.
+// [x] Добавить возможность выйти из модального окна без введения счета
+// [ ] Прописать отображение счета сыгранных матчей
+// [ ] Сыгранные матчи перемещать вниз
+// [ ] Добавить возможность завершить турнир без заполнения матчей
+// [ ]
+
 function TournamentPlay() {
   const dispatch = useDispatch();
 
@@ -59,7 +67,7 @@ function TournamentPlay() {
         </div>
 
         {showInput && (
-          <InputScore match={selectedMatch} clickBtn={handleAddScoreToDB} />
+          <InputScore match={selectedMatch} onSave={handleAddScoreToDB} onClose={setShowInput}/>
         )}
       </div>
     </div>

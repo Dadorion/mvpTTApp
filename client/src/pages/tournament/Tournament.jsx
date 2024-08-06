@@ -21,7 +21,6 @@ import TournamentPlay from "pages/tournamentPlay/TournamentPlay";
 function Tournament() {
   const dispatch = useDispatch();
 
-  // уже здесь нужно проверить, есть ли не завершенный турнир. И, если в бд такого не найдется, тогда показываем настройки.
   const isOnAir = useSelector((store) => store.tournament.onAir);
 
   if (!isOnAir) {

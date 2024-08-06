@@ -39,14 +39,28 @@
 
     > div {
       @include flex-mix(column, center, center);
+      .header {
+        display: grid;
+        grid-template-columns: 40px auto 40px;
+        gap: 8px;
+        align-items: center;
+        justify-items: end;
+
+
+        > h2 {
+          color: $Basic;
+          margin: 1.25rem;
+
+          grid-column: 2;
+        }
+        > img {
+          grid-column: 3;
+        }
+      }
       > div {
         margin: 1rem 0;
       }
 
-      > h2 {
-        color: $Basic;
-        margin: 1.25rem;
-      }
       input {
         width: 2.5rem;
         height: 2.5rem;
