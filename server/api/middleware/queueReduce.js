@@ -10,6 +10,7 @@ export default function makeQueue({ playersAnswer, matchesAnswer }) {
           surname: playersAnswer.find(
             (player) => player.id === match.f_player_id,
           ).p_surname,
+          score: match.f_score,
         },
         {
           s_player: match.s_player_id,
@@ -18,6 +19,7 @@ export default function makeQueue({ playersAnswer, matchesAnswer }) {
           surname: playersAnswer.find(
             (player) => player.id === match.s_player_id,
           ).p_surname,
+          score: match.f_score,
         },
       ],
     };

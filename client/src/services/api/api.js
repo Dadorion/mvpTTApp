@@ -132,6 +132,19 @@ export const matchesAPI = {
       throw error;
     }
   },
+  async addScore({ matchId, fScore, sScore }) {
+    try {
+      const response = await instance.post("api/matches/add_score", {
+        matchId,
+        fScore,
+        sScore,
+      });
+      return response;
+    } catch (error) {
+      console.error("Ошибка добавления счета встречи: ", error);
+      throw error;
+    }
+  },
   async getLastMatches() {
     try {
       const response = await instance.get("api/matches/last");

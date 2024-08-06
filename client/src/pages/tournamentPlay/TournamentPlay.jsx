@@ -8,21 +8,31 @@ import Match from "components/Match/Match";
 import InputScore from "components/InputScore/InputScore";
 
 import { setLastMatchesTC } from "@reducers/matches-reducer";
+import { addScoreToDataBaseTC } from "services/redux/reducers/matches-reducer";
 
 function TournamentPlay() {
   const dispatch = useDispatch();
 
   const lastMatches = useSelector((store) => store.matches.lastMatches);
+  const fScore = useSelector((store) => store.matches.firstScoreInput);
+  const sScore = useSelector((store) => store.matches.secondScoreInput);
 
   if (lastMatches.length === 0) {
-    dispatch(setLastMatchesTC())
+    dispatch(setLastMatchesTC());
   }
 
-
   const [showInput, setShowInput] = useState(false);
+  const [selectedMatch, setSelectedMatch] = useState(null);
 
-  const handleClickOnMatch = (e) => {
-    console.log(e);
+  const handleClickOnMatch = (match) => {
+    console.log(match);
+    setSelectedMatch(match);
+    setShowInput(true);
+  };
+  const handleAddScoreToDB = () => {
+    const matchId = selectedMatch.id;
+    dispatch(addScoreToDataBaseTC({ matchId, fScore, sScore }));
+    setShowInput(false);
   };
 
   const printQueue = lastMatches.map((match) => {
@@ -30,7 +40,7 @@ function TournamentPlay() {
       <Match
         key={match.id}
         players={match.playersPair}
-        onClick={handleClickOnMatch}
+        onClick={() => handleClickOnMatch(match)}
       />
     );
   });
@@ -48,7 +58,9 @@ function TournamentPlay() {
           <div className={s.matches}></div>
         </div>
 
-        {showInput && <InputScore />}
+        {showInput && (
+          <InputScore match={selectedMatch} clickBtn={handleAddScoreToDB} />
+        )}
       </div>
     </div>
   );

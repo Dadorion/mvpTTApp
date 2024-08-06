@@ -55,7 +55,6 @@ class MatchesController {
     try {
       const { userId } = req.user;
       const { tournamentId, matches } = req.body;
-      console.log({ tournamentId, matches });
 
       if (!userId) {
         res.status(400).json({ message: "We need ID number." });
@@ -64,6 +63,31 @@ class MatchesController {
       const isDone = await MatchesService.createNewMatches({
         tournamentId,
         matches,
+      });
+
+      if (!isDone) {
+        res.status(400).json("Matches not added");
+      }
+
+      res.status(200).json(isDone);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
+  static async addScore(req, res) {
+    try {
+      const { userId } = req.user;
+      const { matchId, fScore, sScore } = req.body;
+
+      if (!userId) {
+        res.status(400).json({ message: "We need ID number." });
+      }
+
+      const isDone = await MatchesService.addScore({
+        matchId,
+        fScore,
+        sScore,
       });
 
       if (!isDone) {
