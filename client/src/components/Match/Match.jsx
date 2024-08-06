@@ -1,17 +1,19 @@
-import React, { useState } from "react";
+import React from "react";
 
 import s from "./Match.module.scss";
 
-function Match({ players, score, onClick }) {
-  const [firsScore, setFirstScore] = useState(2);
-  const [secondScore, setSecondScore] = useState(1);
+function Match({ players, onClick }) {
+  const firsScore = players[0].score;
+  const secondScore = players[1].score;
+  
+  const isScore = firsScore && secondScore;
 
   const firstPlayer = `${players[0].name} ${players[0].surname}`;
   const secondPlayer = `${players[1].name} ${players[1].surname}`;
 
   return (
     <div className={s.Match} onClick={onClick}>
-      {score && (
+      {isScore && (
         <div className={s.slot}>
           <div className={s.name_left}>{firstPlayer}</div>
           <div className={s.scoring}>
@@ -23,7 +25,7 @@ function Match({ players, score, onClick }) {
         </div>
       )}
 
-      {!score && (
+      {!isScore && (
         <div className={s.slot}>
           <div className={s.name_left}>{firstPlayer}</div>
           <div className={s.scoring}>
