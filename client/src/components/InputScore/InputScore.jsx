@@ -36,9 +36,6 @@ function InputScore({ match, players, onSave, onClose }) {
   const handleChangeSecondScore = (e) => {
     dispatch(changeSecondScore(e.target.value));
   };
-  const handleClose = (e) => {
-    onClose(false);
-  };
 
   return (
     <div className={s.InputScore}>
@@ -47,7 +44,7 @@ function InputScore({ match, players, onSave, onClose }) {
         <div>
           <div className={s.header}>
             <h2>Счет встречи</h2>
-            <img src={closeIcon} alt="closeIcon" onClick={handleClose} />
+            <img src={closeIcon} alt="closeIcon" onClick={onClose} />
           </div>
           <p>{firstPlayer}</p>
           <div>

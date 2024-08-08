@@ -6,6 +6,7 @@ const tournamentsRouter = new Router();
 
 tournamentsRouter.get("/add", authMiddleware, TournamentsController.addNewTournament);
 tournamentsRouter.get("/check", authMiddleware, TournamentsController.checkTournamentOnAir);
+tournamentsRouter.get("/close", authMiddleware, TournamentsController.closeTournament);
 tournamentsRouter.get("/", authMiddleware, TournamentsController.getAllTournaments);
 tournamentsRouter.get("/:id", authMiddleware, TournamentsController.getOneTournament);
 

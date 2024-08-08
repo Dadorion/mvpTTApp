@@ -2,8 +2,8 @@ import * as dotenv from "dotenv";
 import express from "express";
 import cors from "cors";
 import path from "path";
-import authRouter from "./api/routes/authRouter.js"
-import mainRouter from "./api/routes/mainRouter.js"
+import authRouter from "./api/routes/authRouter.js";
+import mainRouter from "./api/routes/mainRouter.js";
 
 dotenv.config();
 

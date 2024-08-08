@@ -109,6 +109,15 @@ export const tournamentsAPI = {
       throw error;
     }
   },
+  async closeTournament() {
+    try {
+      const response = await instance.get("api/tournaments/close");
+      return response;
+    } catch (error) {
+      console.error("Ошибка закрытия турнира: ", error);
+      throw error;
+    }
+  },
   async checkTournamentOnAir() {
     try {
       const response = await instance.get("api/tournaments/check");

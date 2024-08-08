@@ -65,7 +65,6 @@ export function setMatchesTC(matches) {
       matches,
     });
     const isMatchesAdded = responseMatch.data;
-    console.log(isMatchesAdded);
     if (isMatchesAdded) {
       dispatch(setMatches(matches));
       dispatch(setOnAir(true));
@@ -79,6 +78,13 @@ export function checkTournamentOnAirTC(matches) {
     const isOnAirResponse = await tournamentsAPI.checkTournamentOnAir();
 
     dispatch(setOnAir(isOnAirResponse.data.on_air));
+  };
+}
+export function closeTournamentTC() {
+  return async (dispatch) => {
+    const response = await tournamentsAPI.closeTournament();
+
+    dispatch(setOnAir(response.data.on_air));
   };
 }
 

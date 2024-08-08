@@ -32,9 +32,12 @@ class MatchesService {
   }
 
   static async addScore({ matchId, fScore, sScore }) {
+    const fs = fScore === "" ? 0 : fScore;
+    const ss = sScore === "" ? 0 : sScore;
+
     await pool.query(
       "UPDATE matches SET f_score = $2, s_score = $3 WHERE id = $1",
-      [matchId, fScore, sScore],
+      [matchId, fs, ss],
     );
 
     return "done";

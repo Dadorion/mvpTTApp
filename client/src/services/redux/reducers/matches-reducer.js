@@ -5,8 +5,8 @@ const CHANGE_FIRST_SCORE = "matches/CHANGE_FIRST_SCORE";
 const CHANGE_SECOND_SCORE = "matches/CHANGE_SECOND_SCORE";
 
 const initialState = {
-  firstScoreInput: null,
-  secondScoreInput: null,
+  firstScoreInput: '',
+  secondScoreInput: '',
   lastMatches: [],
 };
 

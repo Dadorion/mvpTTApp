@@ -5,8 +5,8 @@ import s from "./Match.module.scss";
 function Match({ players, onClick }) {
   const firsScore = players[0].score;
   const secondScore = players[1].score;
-  
-  const isScore = firsScore && secondScore;
+
+  const isScore = firsScore >= 0 && secondScore >= 0;
 
   const firstPlayer = `${players[0].name} ${players[0].surname}`;
   const secondPlayer = `${players[1].name} ${players[1].surname}`;

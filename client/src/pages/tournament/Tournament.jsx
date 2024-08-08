@@ -130,6 +130,7 @@ function Tournament() {
 
 
         <div className={s.confirm_btn}>
+          {/* BUG кнопка выглядит, как задизейбленная, но при клике выполняет колбэк*/}
           <CustomButton
             title="Начать турнир"
             disabled={countPlayers < 2}
