@@ -80,7 +80,7 @@ class TournamentsController {
       const { userId } = req.user;
 
       if (!userId) {
-        res.status(400).json({ message: "We need ID number." });
+        return res.status(400).json({ message: "We need ID number." });
       }
       const answer = await TournamentsService.close(userId);
 
@@ -90,9 +90,9 @@ class TournamentsController {
         });
       }
 
-      res.status(200).json(answer);
+      return res.status(200).json(answer);
     } catch (e) {
-      res.status(500).json(e);
+      return res.status(500).json(e);
     }
   }
 }
