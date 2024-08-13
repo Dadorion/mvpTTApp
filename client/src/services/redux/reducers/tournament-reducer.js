@@ -1,12 +1,12 @@
 import { playersAPI, tournamentsAPI, matchesAPI } from "../../api/api";
+import { setMatches } from "./matches-reducer";
+import { changeCheckedPlayers } from "./players-reducer";
 
 const SET_PLAYING = "tournament/SET_PLAYING";
-const SET_MATCHES = "tournament/SET_MATCHES";
 const SET_ON_AIR = "tournament/SET_ON_AIR";
 
 const initialState = {
   onAir: false,
-  matches: [],
 };
 
 function tournamentReducer(state = initialState, action) {
@@ -22,11 +22,6 @@ function tournamentReducer(state = initialState, action) {
         ...state,
         allUserPlayers: players,
       };
-    case SET_MATCHES:
-      return {
-        ...state,
-        matches: action.payload,
-      };
     case SET_ON_AIR:
       return {
         ...state,
@@ -39,9 +34,6 @@ function tournamentReducer(state = initialState, action) {
 
 export function setAllUserPlayers(list) {
   return { type: SET_PLAYING, payload: list };
-}
-export function setMatches(list) {
-  return { type: SET_MATCHES, payload: list };
 }
 export function setOnAir(isOnAir) {
   return { type: SET_ON_AIR, payload: isOnAir };
@@ -85,6 +77,8 @@ export function closeTournamentTC() {
     const response = await tournamentsAPI.closeTournament();
 
     dispatch(setOnAir(response.data.on_air));
+    dispatch(setMatches([]));
+    dispatch(changeCheckedPlayers([]));
   };
 }
 

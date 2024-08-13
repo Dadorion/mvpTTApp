@@ -57,6 +57,7 @@ function Players() {
     );
   };
 
+  // TODO переписать полное снятие выбранных игроков в редюсер, чтобы иметь возможность управлять этим при закрытии турнира.
   const handleUncheckCheckBox = () => {
     dispatch(
       changeUserPlayers(
