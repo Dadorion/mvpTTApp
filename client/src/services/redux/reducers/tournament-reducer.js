@@ -58,7 +58,6 @@ export function setMatchesTC(matches) {
     });
     const isMatchesAdded = responseMatch.data;
     if (isMatchesAdded) {
-      dispatch(setMatches(matches));
       dispatch(setOnAir(true));
     } else {
       dispatch(setOnAir(false));

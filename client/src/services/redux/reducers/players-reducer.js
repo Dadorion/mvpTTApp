@@ -75,7 +75,6 @@ export function addNewUserPlayerTC(name, surname) {
     const players = response.data.body;
 
     dispatch(setAllUserPlayers(players));
-    dispatch(setAllUserPlayers(players));
   };
 }
 
