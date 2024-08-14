@@ -43,7 +43,6 @@ function Tournament() {
     setShowNotice(false);
   }
   function handleStartTournament() {
-    window.alert(queue)
     dispatch(setMatchesTC(queue));
 
     return <Navigate to="/tournament-play" />;
