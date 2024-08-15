@@ -12,14 +12,6 @@ import { addScoreToDataBaseTC } from "@reducers/matches-reducer";
 import { closeTournamentTC } from "@reducers/tournament-reducer";
 import CustomButton from "components/CustomButton/CustomButton";
 
-// [x] Прописать условия блокировки кнопки ОК при попытке отправить пустой счет матча.
-// [x] Добавить возможность выйти из модального окна без введения счета
-// [x] Прописать отображение счета сыгранных матчей
-// [x] Сыгранные матчи перемещать вниз
-// [x] Добавить логику завершения турнира при всех сыгранных матчах
-// [ ] Добавить возможность завершить турнир без заполнения матчей
-// [ ]
-
 function TournamentPlay() {
   const dispatch = useDispatch();
   const hasFetched = useRef(false);
@@ -46,6 +38,9 @@ function TournamentPlay() {
     dispatch(setLastMatchesTC());
     setShowInput(false);
   };
+  const handleCloseTournament = () => {
+    dispatch(closeTournamentTC());
+  }
 
   const readyMatches = lastMatches.filter(
     (match) => match.playersPair[0].score === null,
@@ -98,7 +93,7 @@ function TournamentPlay() {
           <div className={s.matches}>{printDoneQueue}</div>
         </div>
         <div className={s.button}>
-          <CustomButton title={"Завершить турнир"} />
+          <CustomButton title={"Завершить турнир"} onClick={handleCloseTournament}/>
         </div>
 
         {showInput && (
