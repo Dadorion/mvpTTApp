@@ -1,0 +1,26 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.leaderboardTable {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-family: Arial, sans-serif;
+  background-color: $Primary;
+  margin-top: 1.25rem;
+
+  th,
+  td {
+    padding: 0.625rem;
+    border-bottom: 0.0625rem solid $Disabled-grey;
+  }
+
+  th {
+    font-weight: normal;
+    color: rgba(51, 51, 51, 0.6);
+  }
+
+  .topPlayer {
+    color: $Success-green;
+  }
+}

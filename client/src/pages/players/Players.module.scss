@@ -4,7 +4,7 @@
 .Players {
   @include flex-mix(column, flex-start, space-between);
 
-  height: calc(100vh - 4.375rem);
+  height: calc(100vh - $padding);
   position: relative;
   overflow: hidden;
 
