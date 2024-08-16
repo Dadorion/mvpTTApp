@@ -1,6 +1,0 @@
-@import "../../scss/base/vars";
-@import "../../scss/mixins/flex_mixins";
-
-.Congratulations {
-   @include flex-mix(column, center, center);
-}

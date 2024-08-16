@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import s from "./TournamentPlay.module.scss";
@@ -21,12 +22,16 @@ function TournamentPlay() {
   const sScore = useSelector((store) => store.matches.secondScoreInput);
 
   useEffect(() => {
-    dispatch(setLastMatchesTC());
-    hasFetched.current = true;
+    if (!hasFetched.current) {
+      dispatch(setLastMatchesTC());
+      hasFetched.current = true;
+    }
   }, [dispatch]);
 
   const [showInput, setShowInput] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState(null);
+  const [redirectToCongratulations, setRedirectToCongratulations] =
+    useState(false);
 
   const handleClickOnMatch = (match) => {
     setSelectedMatch(match);
@@ -40,7 +45,8 @@ function TournamentPlay() {
   };
   const handleCloseTournament = () => {
     dispatch(closeTournamentTC());
-  }
+    setRedirectToCongratulations(true);
+  };
 
   const readyMatches = lastMatches.filter(
     (match) => match.playersPair[0].score === null,
@@ -55,8 +61,10 @@ function TournamentPlay() {
 
   useEffect(() => {
     if (readyToClose) {
+      console.log("auto close");
       dispatch(closeTournamentTC());
       hasFetched.current = true;
+      setRedirectToCongratulations(true);
     }
   }, [dispatch, readyToClose]);
 
@@ -80,6 +88,10 @@ function TournamentPlay() {
     );
   });
 
+  if (redirectToCongratulations) {
+    return <Navigate to="/congratulations" />;
+  }
+
   return (
     <div className={s.TournamentPlay}>
       <h2>Турнир</h2>
@@ -93,7 +105,10 @@ function TournamentPlay() {
           <div className={s.matches}>{printDoneQueue}</div>
         </div>
         <div className={s.button}>
-          <CustomButton title={"Завершить турнир"} onClick={handleCloseTournament}/>
+          <CustomButton
+            title={"Завершить турнир"}
+            onClick={handleCloseTournament}
+          />
         </div>
 
         {showInput && (

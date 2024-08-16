@@ -1,0 +1,14 @@
+@mixin main_size-mix($direction, $just, $align) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just;
+  align-items: $align;
+
+  position: fixed;
+  top: 0;
+  left: 0;
+
+  height: 100vh;
+  max-width: 400px;
+  margin: 0 auto;
+}
