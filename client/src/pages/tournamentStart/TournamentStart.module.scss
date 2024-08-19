@@ -1,0 +1,26 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.TournamentStart {
+  position: relative;
+
+  z-index: 1;
+  height: 100%;
+  width: 100%;
+
+  background-color: $TwoSecondary;
+
+  .container {
+    @include flex-mix(column, center, center);
+    background-color: $Primary;
+    border-radius: 1.25rem;
+
+    position: absolute;
+    top: 5rem;
+    left: 0;
+
+    height: 80%;
+    width: 100%;
+    gap: 2rem;
+  }
+}

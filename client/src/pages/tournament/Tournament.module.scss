@@ -5,7 +5,7 @@
   @include flex-mix(column, flex-start, center);
 
   position: relative;
-  height: calc(100vh - $padding);
+  height: calc(100vh - $padding - 4rem);
   padding: 2.75rem 1rem 0rem 1rem;
 
   .notice {
@@ -97,11 +97,11 @@
     }
   }
   .confirm_btn {
-    width: 100%;
-
     position: absolute;
     bottom: 0;
     left: 0;
+
+    width: 100%;
   }
 }
 
