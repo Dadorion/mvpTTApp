@@ -100,6 +100,15 @@ export const tournamentsAPI = {
       throw error;
     }
   },
+  async getSummary() {
+    try {
+      const response = await instance.get("api/summary");
+      return response;
+    } catch (error) {
+      console.error("Ошибка запроса итогов турнира: ", error);
+      throw error;
+    }
+  },
   async createNewTournament() {
     try {
       const response = await instance.get("api/tournaments/add");

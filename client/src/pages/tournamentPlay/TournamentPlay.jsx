@@ -11,7 +11,8 @@ import InputScore from "components/InputScore/InputScore";
 import { setLastMatchesTC } from "@reducers/matches-reducer";
 import { addScoreToDataBaseTC } from "@reducers/matches-reducer";
 import { closeTournamentTC } from "@reducers/tournament-reducer";
-import CustomButton from "components/CustomButton/CustomButton";
+import CustomButtonBold from "components/CustomButtonBold/CustomButtonBold";
+import CloseTournamentModal from "components/CloseTournamentModal/CloseTournamentModal";
 
 function TournamentPlay() {
   const dispatch = useDispatch();
@@ -28,6 +29,7 @@ function TournamentPlay() {
     }
   }, [dispatch]);
 
+  const [showCloseModal, setShowCloseModal] = useState(false);
   const [showInput, setShowInput] = useState(false);
   const [selectedMatch, setSelectedMatch] = useState(null);
   const [redirectToCongratulations, setRedirectToCongratulations] =
@@ -43,9 +45,20 @@ function TournamentPlay() {
     dispatch(setLastMatchesTC());
     setShowInput(false);
   };
-  const handleCloseTournament = () => {
+  const closeTournament = () => {
     dispatch(closeTournamentTC());
     setRedirectToCongratulations(true);
+  };
+  const handleCloseTournament = () => {
+    console.log('click showCloseModal');
+    setShowCloseModal(true);
+  };
+  const handleConfirmCloseTournament = () => {
+    closeTournament();
+    setShowCloseModal(false);
+  };
+  const handleCancelCloseTournament = () => {
+    setShowCloseModal(false); // Просто закрываем модальное окно
   };
 
   const readyMatches = lastMatches.filter(
@@ -105,7 +118,7 @@ function TournamentPlay() {
           <div className={s.matches}>{printDoneQueue}</div>
         </div>
         <div className={s.button}>
-          <CustomButton
+          <CustomButtonBold
             title={"Завершить турнир"}
             onClick={handleCloseTournament}
           />
@@ -118,6 +131,7 @@ function TournamentPlay() {
             onClose={() => setShowInput(false)}
           />
         )}
+        {showCloseModal && <CloseTournamentModal onClose={handleCancelCloseTournament} onSave={handleConfirmCloseTournament}/>}
       </div>
     </div>
   );

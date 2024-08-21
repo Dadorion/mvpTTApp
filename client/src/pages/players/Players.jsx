@@ -18,7 +18,7 @@ import plusIcon from "@icons/Colored/Plus.svg";
 
 import Header from "@components/Header/Header";
 import CheckBox from "@components/CheckBox/CheckBox";
-import CustomButton from "@components/CustomButton/CustomButton";
+import CustomButtonBold from "@components/CustomButtonBold/CustomButtonBold";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
 function Players() {
@@ -149,7 +149,7 @@ function Players() {
 
       <Link to={`/tournaments`}>
         <div className={s.confirm_btn}>
-          <CustomButton
+          <CustomButtonBold
             title="Добавить участников"
             disabled={countPlayers < 2}
             onClick={handleConfirmPlayersChoice}

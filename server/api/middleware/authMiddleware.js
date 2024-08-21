@@ -2,9 +2,9 @@ import jwt from "jsonwebtoken";
 import config from "../../config/config.js";
 import AuthController from "../controllers/authController.js";
 
-function authMiddleware(req, res, next) {
+async function authMiddleware(req, res, next) {
   if (req.method === "OPTIONS") {
-    next();
+    return next();
   }
 
   try {
@@ -14,16 +14,24 @@ function authMiddleware(req, res, next) {
         message: "Пользователь не авторизован. Токен не получен",
       });
     }
-    const token = fullToken.split(" ")[1];
 
-    const intoBlackList = AuthController.checkBlackList(token);
+    const token = fullToken.split(" ")[1];
+    if (!token) {
+      return res.status(403).json({
+        message: "Пользователь не авторизован. Токен отсутствует",
+      });
+    }
+
+
+    const intoBlackList = await AuthController.checkBlackList(token);
 
     if (intoBlackList.length > 0) {
-      res.status(401).json({ error: "Token revoked" });
+      return res.status(401).json({ error: "Token revoked" });
     }
 
     const decodedData = jwt.verify(token, config.secret);
     req.user = decodedData;
+
     return next();
   } catch (e) {
     return res.status(403).json({

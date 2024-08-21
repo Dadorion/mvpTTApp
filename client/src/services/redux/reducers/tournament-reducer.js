@@ -4,9 +4,11 @@ import { changeCheckedPlayers } from "./players-reducer";
 
 const SET_PLAYING = "tournament/SET_PLAYING";
 const SET_ON_AIR = "tournament/SET_ON_AIR";
+const SET_SUMMARY = "tournament/SET_SUMMARY";
 
 const initialState = {
   onAir: false,
+  summary: []
 };
 
 function tournamentReducer(state = initialState, action) {
@@ -27,6 +29,11 @@ function tournamentReducer(state = initialState, action) {
         ...state,
         onAir: action.payload,
       };
+    case SET_SUMMARY:
+      return {
+        ...state,
+        summary: action.payload,
+      };
     default:
       return state;
   }
@@ -37,6 +44,9 @@ export function setAllUserPlayers(list) {
 }
 export function setOnAir(isOnAir) {
   return { type: SET_ON_AIR, payload: isOnAir };
+}
+export function setSummary(summary) {
+  return { type: SET_SUMMARY, payload: summary };
 }
 
 export function setAllUserPlayersTC() {
@@ -78,6 +88,14 @@ export function closeTournamentTC() {
     dispatch(setOnAir(response.data.on_air));
     dispatch(setMatches([]));
     dispatch(changeCheckedPlayers([]));
+  };
+}
+
+export function setSummaryTC() {
+  return async (dispatch) => {
+    const response = await tournamentsAPI.getSummary();
+
+    dispatch(setSummary(response));
   };
 }
 

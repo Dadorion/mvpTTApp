@@ -9,7 +9,7 @@ import Profile from "../profile/Profile";
 import Tabbar from "../../components/Tabbar/Tabbar";
 import Tournament from "../tournament/Tournament";
 import TournamentPlay from "../tournamentPlay/TournamentPlay";
-import TournamentResults from "../tournamentResults/TournamentResults";
+import TournamentSummary from "../TournamentSummary/TournamentSummary";
 import Players from "../players/Players";
 import Congratulations from "../Congratulations/Congratulations";
 import TournamentStart from "pages/tournamentStart/TournamentStart";
@@ -19,8 +19,9 @@ function Content() {
     <div className={s.Content}>
       <Routes>
         <Route path="/" element={<StartPage />} />
-        <Route path="/home" element={<HomePage />} />
-        {/* <Route path="/home" element={<TournamentResults />} /> */}
+        {/* <Route path="/home" element={<HomePage />} /> */}
+        <Route path="/tournament-summary" element={<TournamentSummary />} />
+        <Route path="/home" element={<TournamentSummary />} />
         {/* <Route path="/home" element={<Congratulations />} /> */}
         {/* <Route path="/home" element={<TournamentStart />} /> */}
         <Route path="/tournaments" element={<Tournament />} />

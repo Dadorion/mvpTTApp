@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import s from "./InputScore.module.scss";
 
-import CustomButton from "components/CustomButton/CustomButton";
+import CustomButtonBold from "components/CustomButtonBold/CustomButtonBold";
 import {
   changeFirstScore,
   changeSecondScore,
@@ -62,7 +62,7 @@ function InputScore({ match, players, onSave, onClose }) {
           </div>
           <p>{secondPlayer}</p>
         </div>
-        <CustomButton title={"Ok"} onClick={onSave} disabled={isDisabled} />
+        <CustomButtonBold title={"Ok"} onClick={onSave} disabled={isDisabled} />
       </div>
     </div>
   );

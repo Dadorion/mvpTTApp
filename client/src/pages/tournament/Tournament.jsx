@@ -10,7 +10,7 @@ import questIcon from "@icons/Black/Light/Question_light.svg";
 import userPlusIcon from "@icons/Black/Regular/UserPlus.svg";
 
 import ArrowInput from "@components/ArrowInput/ArrowInput";
-import CustomButton from "@components/CustomButton/CustomButton";
+import CustomButtonBold from "@components/CustomButtonBold/CustomButtonBold";
 import CheckBox from "@components/CheckBox/CheckBox";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
@@ -131,7 +131,7 @@ function Tournament() {
 
         <div className={s.confirm_btn}>
           {/* BUG кнопка выглядит, как задизейбленная, но при клике выполняет колбэк*/}
-          <CustomButton
+          <CustomButtonBold
             title="Начать турнир"
             disabled={countPlayers < 2}
             onClick={handleStartTournament}

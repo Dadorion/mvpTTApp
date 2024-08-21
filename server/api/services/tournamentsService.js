@@ -65,6 +65,19 @@ class TournamentsService {
 
     return answer.rows[0].on_air;
   }
+
+  static async getSummary(userId) {
+    const lastTournamentId = await pool.query(
+      "SELECT id FROM tournaments WHERE user_id = $1 order by id desc LIMIT 1",
+      [userId],
+    );
+    const answer = await pool.query(
+      "SELECT * FROM matches WHERE tournament_id = $1",
+      [lastTournamentId.rows[0].id],
+    );
+
+    return answer.rows;
+  }
 }
 
 export default TournamentsService;

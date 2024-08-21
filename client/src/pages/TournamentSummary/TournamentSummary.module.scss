@@ -1,7 +1,7 @@
 @import "../../scss/base/vars";
 @import "../../scss/mixins/flex_mixins";
 
-.tournamentResults {
+.TournamentSummary {
   @include flex-mix(column, flex-start, center);
   //   outline: 0.0625rem solid red;
 

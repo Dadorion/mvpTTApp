@@ -1,7 +1,7 @@
 @import "../../scss/base/vars";
 @import "../../scss/mixins/flex_mixins";
 
-.CustomButton {
+.CustomButtonBold {
   @include flex_mix(column, center, center);
 
   width: 100%;
@@ -9,12 +9,19 @@
   border-radius: 2.5rem;
   padding: 1.5rem 0.75rem;
   width: 100%;
-}
+  cursor: pointer;
+  opacity: 1;
+  transition: opacity 0.3s ease;
 
-.disabled {
-  background: $Disabled-grey;
-}
-.enabled {
-  background: $Secondary;
-  color: $Primary;
+  &:hover {
+    opacity: .95;
+  }
+
+  &.disabled {
+    background: $Disabled-grey;
+  }
+  &.enabled {
+    background: $Secondary;
+    color: $Primary;
+  }
 }
