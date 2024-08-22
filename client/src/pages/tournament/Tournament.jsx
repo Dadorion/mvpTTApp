@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Navigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import s from "./Tournament.module.scss";
 
@@ -32,6 +31,7 @@ function Tournament() {
     (store) => store.players.countCheckedPlayers,
   );
   const [showNotice, setShowNotice] = useState(true);
+  const navigate = useNavigate();
 
   if (isOnAir) {
     return <TournamentPlay />;
@@ -45,7 +45,7 @@ function Tournament() {
   function handleStartTournament() {
     dispatch(setMatchesTC(queue));
 
-    return <Navigate to="/tournament-play" />;
+    navigate("/tournament-start");
   }
 
   const printPlayers = checkedPlayers.map((player) => {
@@ -130,7 +130,6 @@ function Tournament() {
 
 
         <div className={s.confirm_btn}>
-          {/* BUG кнопка выглядит, как задизейбленная, но при клике выполняет колбэк*/}
           <CustomButtonBold
             title="Начать турнир"
             disabled={countPlayers < 2}

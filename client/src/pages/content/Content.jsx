@@ -20,12 +20,12 @@ function Content() {
       <Routes>
         <Route path="/" element={<StartPage />} />
         <Route path="/home" element={<HomePage />} />
-        <Route path="/tournament-summary" element={<TournamentSummary />} />
-        {/* <Route path="/home" element={<TournamentStart />} /> */}
         <Route path="/tournaments" element={<Tournament />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/tournament-start" element={<TournamentStart />} />
         <Route path="/tournament-play" element={<TournamentPlay />} />
         <Route path="/congratulations" element={<Congratulations />} />
-        <Route path="/profile" element={<Profile />} />
+        <Route path="/tournament-summary" element={<TournamentSummary />} />
 
         <Route path="/players" element={<Players />} />
       </Routes>
