@@ -72,7 +72,7 @@ class TournamentsService {
       [userId],
     );
     const answer = await pool.query(
-      "SELECT * FROM matches WHERE tournament_id = $1",
+      "SELECT m.id m_id, fp.id fp_id, sp.id sp_id,fp.p_name fp_name, fp.p_surname fp_surname, sp.p_name sp_name, sp.p_surname sp_surname, m.f_score fp_score, m.s_score sp_score FROM matches m join players fp on fp.id = m.f_player_id join players sp on sp.id = m.s_player_id WHERE tournament_id = $1",
       [lastTournamentId.rows[0].id],
     );
 

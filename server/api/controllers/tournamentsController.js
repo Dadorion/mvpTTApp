@@ -1,4 +1,5 @@
 import TournamentsService from "../services/tournamentsService.js";
+import leadersReduce from "../middleware/leadersReduce.js";
 
 class TournamentsController {
   static async getAllTournaments(req, res) {
@@ -103,9 +104,11 @@ class TournamentsController {
       if (!userId) {
         res.status(400).json({ message: "We need ID number." });
       }
-      const answer = await TournamentsService.getSummary(userId);
+      const matches = await TournamentsService.getSummary(userId);
 
-      res.status(200).json(answer);
+      const leaders = leadersReduce({matches});
+
+      res.status(200).json(leaders);
     } catch (e) {
       res.status(500).json(e);
     }

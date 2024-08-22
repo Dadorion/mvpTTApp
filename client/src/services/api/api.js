@@ -102,7 +102,7 @@ export const tournamentsAPI = {
   },
   async getSummary() {
     try {
-      const response = await instance.get("api/summary");
+      const response = await instance.get("api/tournaments/summary");
       return response;
     } catch (error) {
       console.error("Ошибка запроса итогов турнира: ", error);

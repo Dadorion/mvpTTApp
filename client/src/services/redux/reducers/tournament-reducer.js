@@ -95,7 +95,8 @@ export function setSummaryTC() {
   return async (dispatch) => {
     const response = await tournamentsAPI.getSummary();
 
-    dispatch(setSummary(response));
+
+    dispatch(setSummary(response.data));
   };
 }
 

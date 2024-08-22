@@ -19,10 +19,8 @@ function Content() {
     <div className={s.Content}>
       <Routes>
         <Route path="/" element={<StartPage />} />
-        {/* <Route path="/home" element={<HomePage />} /> */}
+        <Route path="/home" element={<HomePage />} />
         <Route path="/tournament-summary" element={<TournamentSummary />} />
-        <Route path="/home" element={<TournamentSummary />} />
-        {/* <Route path="/home" element={<Congratulations />} /> */}
         {/* <Route path="/home" element={<TournamentStart />} /> */}
         <Route path="/tournaments" element={<Tournament />} />
         <Route path="/tournament-play" element={<TournamentPlay />} />
