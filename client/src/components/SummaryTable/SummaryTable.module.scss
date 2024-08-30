@@ -1,0 +1,26 @@
+/* TournamentTable.module.scss */
+.tableContainer {
+  display: inline-block;
+  margin: 0 auto;
+}
+
+.tournamentTable {
+  border-collapse: collapse;
+  margin: 20px auto;
+  width: auto;
+}
+
+.tournamentTable th,
+.tournamentTable td {
+  border: 1px solid #000;
+  padding: 8px 12px;
+  text-align: center;
+}
+
+.tournamentTable th {
+  background-color: #f4f4f4;
+}
+
+.tournamentTable td:first-child {
+  text-align: left;
+}

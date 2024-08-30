@@ -50,7 +50,6 @@ function TournamentPlay() {
     setRedirectToCongratulations(true);
   };
   const handleCloseTournament = () => {
-    console.log('click showCloseModal');
     setShowCloseModal(true);
   };
   const handleConfirmCloseTournament = () => {
@@ -74,7 +73,6 @@ function TournamentPlay() {
 
   useEffect(() => {
     if (readyToClose) {
-      console.log("auto close");
       dispatch(closeTournamentTC());
       hasFetched.current = true;
       setRedirectToCongratulations(true);
