@@ -13,7 +13,10 @@ import CustomButtonBold from "@components/CustomButtonBold/CustomButtonBold";
 import CheckBox from "@components/CheckBox/CheckBox";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
 
-import { setMatchesTC, checkTournamentOnAirTC } from "services/redux/reducers/tournament-reducer";
+import {
+  setMatchesTC,
+  checkTournamentOnAirTC,
+} from "services/redux/reducers/tournament-reducer";
 import makeQueueRequest from "services/queueAlg/queueRequest";
 import TournamentPlay from "pages/tournamentPlay/TournamentPlay";
 
@@ -77,7 +80,7 @@ function Tournament() {
             Разряд
             <img src={questIcon} alt="questIcon" />
           </div>
-          <ArrowInput category list={["личный", "парный"]} />
+          <ArrowInput list={["личный", "парный"]} />
         </div>
         <div className={s.list_item}>
           <div className={s.title}>
@@ -98,10 +101,7 @@ function Tournament() {
             Итоги
             <img src={questIcon} alt="questIcon" />
           </div>
-          <ArrowInput
-            system
-            list={["сумма по партиям", "простой", "официальный"]}
-          />
+          <ArrowInput list={["сумма по партиям", "простой", "официальный"]} />
         </div>
       </div>
 
@@ -128,14 +128,13 @@ function Tournament() {
         )}
       </div>
 
-
-        <div className={s.confirm_btn}>
-          <CustomButtonBold
-            title="Начать турнир"
-            disabled={countPlayers < 2}
-            onClick={handleStartTournament}
-          />
-        </div>
+      <div className={s.confirm_btn}>
+        <CustomButtonBold
+          title="Начать турнир"
+          disabled={countPlayers < 2}
+          onClick={handleStartTournament}
+        />
+      </div>
     </div>
   );
 }

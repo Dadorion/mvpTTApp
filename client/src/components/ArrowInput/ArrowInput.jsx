@@ -11,10 +11,9 @@ import s from "./ArrowInput.module.scss";
  * @param {Object} props - Свойства компонента.
  * @param {boolean} [props.showArrow=false] - Флаг для отображения стрелок. По умолчанию не отображается.
  * @param {boolean} [props.numbers] - Флаг для отображения числа.
- * @param {boolean} [props.score] - Флаг для отображения значения из массива listScore.
- * @param {boolean} [props.system] - Флаг для отображения значения из массива listSystem.
  * @param {number} props.step - Шаг инкремента и декремента числового значения.
  * @param {number} props.start - Начальное значение числа.
+ * @param {number} props.end - Конечное значение числа.
  *
  * @returns {JSX.Element} Возвращает JSX элемент ArrowInput.
  *
@@ -29,10 +28,9 @@ import s from "./ArrowInput.module.scss";
  *       <ArrowInput
  *         showArrow={true}
  *         numbers={true}
- *         score={true}
- *         system={true}
  *         step={1}
  *         start={3}
+ *         end={5}
  *       />
  *     </div>
  *   );
@@ -48,7 +46,9 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
 
   const [position, setPosition] = useState(startNum);
   const [leftBtnClass, setLeftBtnClass] = useState(`${s.btn} ${s.leftColumn}`);
-  const [rightBtnClass, setRightBtnClass] = useState(`${s.btn} ${s.rightColumn}`);
+  const [rightBtnClass, setRightBtnClass] = useState(
+    `${s.btn} ${s.rightColumn}`,
+  );
 
   const handlerIncrement = () => {
     if (position + stepNum > endNum) return;
@@ -80,8 +80,10 @@ function ArrowInput({ numbers, list, step = 1, start = 1, end = 7 }) {
         <img src={caretLeftIcon} alt="caretLeftIcon" />
       </button>
 
-      <div className={s.centerColumn}>{numbers && <p>{position}</p>}
-      {list && <p>{list[position - 1]}</p>}</div>
+      <div className={s.centerColumn}>
+        {numbers && <p>{position}</p>}
+        {list && <p>{list[position - 1]}</p>}
+      </div>
 
       <button
         type="button"
