@@ -1,5 +1,5 @@
 import React from "react";
-import s from "./StartPage.module.scss";
+import s from "./startPage.module.scss";
 import { Link } from "react-router-dom";
 
 function StartPage() {

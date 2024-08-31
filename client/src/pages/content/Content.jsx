@@ -1,9 +1,9 @@
 import React from "react";
 import { Route, Routes } from "react-router-dom";
 
-import s from "./Content.module.scss"
+import s from "./Content.module.scss";
 
-import StartPage from "../startPage/StartPage";
+import StartPage from "../startPage/startPage";
 import HomePage from "../homePage/HomePage";
 import Profile from "../profile/Profile";
 import Tabbar from "../../components/Tabbar/Tabbar";

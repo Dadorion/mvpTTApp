@@ -16,7 +16,7 @@ import swapIcon from "@icons/Black/Light/Swap_light.svg";
 import searchIcon from "@icons/Black/Light/Search_light.svg";
 import plusIcon from "@icons/Colored/Plus.svg";
 
-import Header from "@components/Header/Header";
+import Header from "@components/header/Header";
 import CheckBox from "@components/CheckBox/CheckBox";
 import CustomButtonBold from "@components/CustomButtonBold/CustomButtonBold";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
