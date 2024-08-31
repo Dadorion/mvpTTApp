@@ -11,6 +11,7 @@ import s from "./ArrowInput.module.scss";
  * @param {Object} props - Свойства компонента.
  * @param {boolean} [props.showArrow=false] - Флаг для отображения стрелок. По умолчанию не отображается.
  * @param {boolean} [props.numbers] - Флаг для отображения числа.
+ * @param {number} props.list - Массив строк для итерации.
  * @param {number} props.step - Шаг инкремента и декремента числового значения.
  * @param {number} props.start - Начальное значение числа.
  * @param {number} props.end - Конечное значение числа.
