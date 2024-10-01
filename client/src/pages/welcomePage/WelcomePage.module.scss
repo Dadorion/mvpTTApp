@@ -1,0 +1,21 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.WelcomePage {
+  height: calc(100vh - $padding);
+  outline: 0.0625rem solid red;
+  .firstScreen {
+    @include flex-mix(column, flex-start, center);
+    margin-bottom: 2.5rem;
+
+    .logo {
+      margin: 3.125rem 0;
+    }
+    h1 {
+      margin-bottom: 3.125rem;
+    }
+  }
+  .secondScreen {
+    margin-bottom: 2.5rem;
+  }
+}
