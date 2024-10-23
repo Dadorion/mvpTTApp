@@ -2,11 +2,21 @@
 @import "../../scss/mixins/flex_mixins";
 
 .WelcomePage {
-  height: calc(100vh - $padding);
-  outline: 0.0625rem solid red;
+  // height: calc(100vh - $padding);
+  // overflow: scroll;
+  // * {
+  //   outline: 0.0625rem solid red;
+  // }
+
+  .headImage {
+    width: 100%;
+  }
+
   .firstScreen {
-    @include flex-mix(column, flex-start, center);
+    @include flex-mix(column, center, center);
     margin-bottom: 2.5rem;
+    width: 100%;
+    padding: 1rem;
 
     .logo {
       margin: 3.125rem 0;
@@ -17,5 +27,15 @@
   }
   .secondScreen {
     margin-bottom: 2.5rem;
+  }
+  .repeatButtons {
+    padding: 1rem;
+  }
+  > p {
+    text-align: center;
+    font-size: .8rem;
+  }
+  > p:last-child {
+    margin-bottom: 6rem;
   }
 }

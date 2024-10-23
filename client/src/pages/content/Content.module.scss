@@ -9,5 +9,5 @@
   width: 100%;
   height: 100%;
 
-  @include flex-mix(row, center, center);
+  @include flex-mix(row, center, flex-start);
 }

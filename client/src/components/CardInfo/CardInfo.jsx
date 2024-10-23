@@ -6,10 +6,9 @@ function CardInfo({ img, title, body }) {
   return (
     <div className={s.CardInfo}>
       <div className={s.header}>
-        <h1 className={s.title}>{title}</h1>
+        <h1>{title}</h1>
         <img src={img} alt="img" />
       </div>
-
       <div className={s.body}>{body}</div>
     </div>
   );
