@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Navigate } from "react-router-dom";
 import s from "./Profile.module.scss";
 
 import {
@@ -21,6 +22,11 @@ function Profile() {
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
+  const isAuth = useSelector((store) => store.auth.isAuth);
+
+  if (!isAuth) {
+    return <Navigate to="/" />;
+  }
 
   function handleShowPasswordInput() {
     setShowPasswordInput(!showPasswordInput);

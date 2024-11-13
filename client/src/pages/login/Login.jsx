@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Navigate } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import s from "./Login.module.scss";
 
 import loginImage from "assets/images/loginImage.jpg";
-import {
-  changeEmail,
-  changePassword,
-} from "@reducers/login-reducer";
+import { changeEmail, changePassword } from "@reducers/login-reducer";
 import { loginTC } from "@reducers/auth-reducer";
 
 function Login() {
@@ -15,7 +12,7 @@ function Login() {
   const email = useSelector((store) => store.login.email);
   const password = useSelector((store) => store.login.password);
   const isAuth = useSelector((store) => store.auth.isAuth);
-  const [error, setError] = useState('');
+  const [error, setError] = useState("");
 
   function handleChangeEmail(e) {
     dispatch(changeEmail(e.target.value));
@@ -25,9 +22,9 @@ function Login() {
   }
   function handleConfirm() {
     if (!email & !password) {
-      setError('Empty login or password')
-      return
-    };
+      setError("Empty login or password");
+      return;
+    }
     dispatch(loginTC({ email, password }));
   }
 
@@ -37,7 +34,9 @@ function Login() {
 
   return (
     <div className={s.Login}>
-      <img src={loginImage} alt="logo_img" />
+      <Link to="/">
+        <img src={loginImage} alt="logo_img" />
+      </Link>
       <h1>Вход</h1>
       <input
         type="text"
@@ -54,9 +53,7 @@ function Login() {
       <button type="button" onClick={handleConfirm}>
         Войти
       </button>
-      {error !== '' && (
-        <span className={s.error}>{error}</span>
-      )}
+      {error !== "" && <span className={s.error}>{error}</span>}
       <div className={s.hasAccount}>
         <span>Нет аккаунта?</span>
         <a href="/registration">Зарегистрироваться</a>

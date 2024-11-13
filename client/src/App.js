@@ -8,6 +8,7 @@ import Login from "./pages/login/Login";
 import Spinner from "./components/SpinnerPreloader/Spinner";
 import AuthRedirect from "./components/AuthRedirect/AuthRedirect";
 import Content from "./pages/content/Content";
+import WelcomePage from "pages/welcomePage/WelcomePage";
 
 function App() {
   const initialized = useSelector((store) => store.app.initialized);
@@ -24,6 +25,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
+        <Route path="/" element={<WelcomePage />} />
         <Route path="/registration" element={<Registration />} />
         <Route path="/login" element={<Login />} />
         <Route
@@ -38,6 +40,5 @@ function App() {
     </div>
   );
 }
-
 
 export default App;

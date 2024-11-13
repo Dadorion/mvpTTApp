@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import s from "./WelcomePage.module.scss";
 
@@ -44,14 +45,15 @@ function WelcomePage() {
       <div className={s.firstScreen}>
         <img src={logoImg} alt="logoImg" className={s.logo} />
         <h1>Проводи турниры по настольному теннису</h1>
-        <CustomButton title={"Войти"} />
-        <CustomButton title={"Регистрация"} />
-        <img src={caretDownIcon} alt="caretDownIcon" />
+        <Link to="/home">
+          <CustomButton title={"Начать"} />
+        </Link>
       </div>
       <div className={s.secondScreen}>{printCards}</div>
       <div className={s.repeatButtons}>
-        <CustomButton title={"Войти"} />
-        <CustomButton title={"Регистрация"} />
+        <Link to="/home">
+          <CustomButton title={"Начать"} />
+        </Link>
       </div>
 
       <p>TabTen app v. 4.0</p>
