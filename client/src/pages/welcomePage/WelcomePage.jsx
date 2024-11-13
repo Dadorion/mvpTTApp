@@ -6,7 +6,6 @@ import s from "./WelcomePage.module.scss";
 import welcomeImg from "../../assets/images/welcome.png";
 import logoImg from "../../assets/images/Logo.png";
 import CustomButton from "components/CustomButtonBold/CustomButtonBold";
-import caretDownIcon from "@icons/Black/Regular/CaretDown.svg";
 import pingPongIcon from "@icons/Colored/PingPong.png";
 
 import CardInfo from "components/CardInfo/CardInfo";
