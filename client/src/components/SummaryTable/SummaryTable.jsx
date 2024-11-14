@@ -1,4 +1,3 @@
-// SummaryTable.js
 import React from "react";
 import s from "./SummaryTable.module.scss";
 
@@ -23,14 +22,14 @@ function SummaryTable({ players }) {
               </td>
               {players.map((opponent, i) => {
                 if (index === i) {
-                  return <td key={i}>x</td>; // если игрок сравнивается с самим собой, то "x"
+                  return <td key={i}>x</td>;
                 } else if (player.position < opponent.position) {
-                  return <td key={i}>2</td>; // например, 2 очка, если выиграл
+                  return <td key={i}>2</td>;
                 } else {
-                  return <td key={i}>0</td>; // 0 очков, если проиграл
+                  return <td key={i}>0</td>;
                 }
               })}
-              <td>{player.points}</td> {/* Отображаем итоговые баллы игрока */}
+              <td>{player.points}</td>
             </tr>
           ))}
         </tbody>

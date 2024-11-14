@@ -1,9 +1,9 @@
 import React from "react";
-import styles from "./Leaderboard.module.scss";
+import s from "./Leaderboard.module.scss";
 
 const Leaderboard = ({ players }) => {
   return (
-    <table className={styles.leaderboardTable}>
+    <table className={s.leaderboardTable}>
       <thead>
         <tr>
           <th>Место</th>
@@ -15,7 +15,7 @@ const Leaderboard = ({ players }) => {
         {players.map((player, index) => (
           <tr
             key={index}
-            className={player.position <= 3 ? styles.topPlayer : ""}
+            className={player.position <= 3 ? s.topPlayer : ""}
           >
             <td>{player.position}</td>
             <td>{player.name}</td>

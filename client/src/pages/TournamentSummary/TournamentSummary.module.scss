@@ -38,6 +38,7 @@
         .links_item {
           @include flex-mix(column, center, center);
           color: $Secondary;
+          cursor: pointer;
         }
       }
     }
