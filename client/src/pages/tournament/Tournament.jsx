@@ -33,7 +33,7 @@ function Tournament() {
   const countPlayers = useSelector(
     (store) => store.players.countCheckedPlayers,
   );
-  const [showNotice, setShowNotice] = useState(true);
+  const [showNotice, setShowNotice] = useState(false);
   const navigate = useNavigate();
 
   if (isOnAir) {

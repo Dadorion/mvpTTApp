@@ -8,6 +8,7 @@ const SET_SUMMARY = "tournament/SET_SUMMARY";
 
 const initialState = {
   onAir: false,
+  games: 3,
   summary: []
 };
 

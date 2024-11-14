@@ -57,7 +57,7 @@ function TournamentPlay() {
     setShowCloseModal(false);
   };
   const handleCancelCloseTournament = () => {
-    setShowCloseModal(false); // Просто закрываем модальное окно
+    setShowCloseModal(false);
   };
 
   const readyMatches = lastMatches.filter(

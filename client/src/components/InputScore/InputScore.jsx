@@ -18,23 +18,37 @@ function InputScore({ match, players, onSave, onClose }) {
   const secondScoreInput = useSelector(
     (store) => store.matches.secondScoreInput,
   );
+  const gamesStore = useSelector((store) => store.tournament.games);
+  const gamesToWin = (gamesStore - 1) / 2 + 1;
 
   useEffect(() => {
-    if (firstScoreInput && secondScoreInput) {
+    if (firstScoreInput === gamesToWin || secondScoreInput === gamesToWin) {
       setIsDisabled(false);
     } else {
       setIsDisabled(true);
     }
-  }, [firstScoreInput, secondScoreInput]);
+  }, [firstScoreInput, secondScoreInput, gamesToWin]);
 
   const firstPlayer = `${match.playersPair[0].name} ${match.playersPair[0].surname}`;
   const secondPlayer = `${match.playersPair[1].name} ${match.playersPair[1].surname}`;
 
   const handleChangeFirstScore = (e) => {
-    dispatch(changeFirstScore(e.target.value));
+    let score = Math.max(0, Math.min(parseInt(e.target.value) || 0, gamesToWin));
+
+    if (secondScoreInput === gamesToWin && score >= gamesToWin) {
+      score = gamesToWin - 1;
+    }
+
+    dispatch(changeFirstScore(score));
   };
   const handleChangeSecondScore = (e) => {
-    dispatch(changeSecondScore(e.target.value));
+    let score = Math.max(0, Math.min(parseInt(e.target.value) || 0, gamesToWin));
+
+    if (firstScoreInput === gamesToWin && score >= gamesToWin) {
+      score = gamesToWin - 1;
+    }
+
+    dispatch(changeSecondScore(score));
   };
 
   return (
