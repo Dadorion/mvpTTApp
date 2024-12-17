@@ -29,12 +29,20 @@ class UserService {
     return result;
   }
 
+  static async getMyPlayerId(userId) {
+    const answer = await pool.query(
+      "SELECT player_id FROM users WHERE id = $1",
+      [userId],
+    );
+    
+    return answer.rows[0].player_id;
+  }
+
   static async updateMyPassword({ id, email, password }) {
     const updatedUser = await pool.query(
       "UPDATE users SET email = $2, email = $3 WHERE id = $1",
       [id, email, password],
     );
-
     return updatedUser.rows;
   }
 }

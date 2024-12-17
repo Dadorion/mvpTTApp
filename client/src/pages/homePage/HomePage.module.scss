@@ -1,17 +1,71 @@
+@import "../../scss/base/vars";
 @import "../../scss/mixins/flex_mixins";
 
 .HomePage {
   height: 100vh;
-  // background-color: #232e3f;
 
-  @include flex-mix(column, center, center);
+  @include flex-mix(column, flex-start, center);
 
   h1 {
     color: #ccd3dc;
     font-size: 2rem;
-    margin-top: 2rem;
+    margin: 2rem;
   }
   h2 {
     color: #ccd3dc;
+  }
+  h3 {
+    color: $Secondary;
+    margin: 0.5rem;
+    text-align: center;
+  }
+  .wins_mainInfo {
+    .info {
+      @include flex-mix(row, space-between, center);
+      .item {
+        @include flex-mix(column, space-between, center);
+        margin: 1rem;
+        padding: 1rem;
+
+        color: $Basic;
+        font-weight: 600;
+        h5 {
+          color: $Secondary;
+        }
+        > div {
+          @include flex-mix(row, space-between, flex-end);
+          gap: 0.1rem;
+          > span:first-child {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: $Basic;
+          }
+          > span:last-child {
+            font-weight: 600;
+            opacity: .5;
+          }
+        }
+      }
+    }
+  }
+  .wins_players {
+    width: 100%;
+    @include flex-mix(column, center, flex_start);
+    table {
+      tr {
+        th,
+        td {
+          border: 0.125rem solid $Secondary;
+          padding: 0.5rem;
+          text-align: center;
+        }
+        th {
+          background-color: $Disabled-grey;
+        }
+      }
+    }
+  }
+  div:last-child {
+    margin-top: 1rem;
   }
 }

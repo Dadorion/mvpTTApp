@@ -20,12 +20,14 @@ class MatchesService {
 
   static async createNewMatches({ tournamentId, matches }) {
     await pool.query("BEGIN");
+
     for (const match of matches) {
       await pool.query(
         "INSERT INTO matches (tournament_id, f_player_id, s_player_id) VALUES ($1, $2, $3)",
         [tournamentId, match.fPlayerId, match.sPlayerId],
       );
     }
+    
     await pool.query("END");
 
     return "done";

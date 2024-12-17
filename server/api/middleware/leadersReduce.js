@@ -29,10 +29,15 @@ export default function leadersReduce({ matches }) {
     (a, b) => b.points - a.points,
   );
 
-  const rankedPlayers = sortedPlayers.map((player, index) => ({
-    ...player,
-    position: index + 1,
-  }));
+  let currentRank = 1;
+  const rankedPlayers = sortedPlayers.map((player, index) => {
+    if (index > 0 && player.points === sortedPlayers[index - 1].points) {
+      return { ...player, position: currentRank };
+    }
+
+    currentRank = index + 1;
+    return { ...player, position: currentRank };
+  });
 
   return rankedPlayers;
 }

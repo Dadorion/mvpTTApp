@@ -174,3 +174,41 @@ export const matchesAPI = {
     }
   },
 };
+export const homeAPI = {
+  async getAllMatches() {
+    try {
+      const response = await instance.get("api/home/all_matches");
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения количества всех матчей: ", error);
+      throw error;
+    }
+  },
+  async getAllWins() {
+    try {
+      const response = await instance.get("api/home/all_wins");
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения количества всех побед: ", error);
+      throw error;
+    }
+  },
+  async getLastMatches() {
+    try {
+      const response = await instance.get("api/home/last_matches");
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения количества последних матчей: ", error);
+      throw error;
+    }
+  },
+  async getLastWins() {
+    try {
+      const response = await instance.get("api/home/last_wins");
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения количества последних побед: ", error);
+      throw error;
+    }
+  },
+}

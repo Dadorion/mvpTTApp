@@ -5,6 +5,7 @@ import profileRouter from "./profileRouter.js";
 import playersRouter from "./playersRouter.js";
 import tournamentsRouter from "./tournamentsRouter.js";
 import matchesRouter from "./matchesRouter.js";
+import homeRouter from "./homeRouter.js";
 
 const mainRouter = new Router();
 
@@ -13,5 +14,6 @@ mainRouter.use("/profile", authMiddleware, profileRouter);
 mainRouter.use("/players", authMiddleware, playersRouter);
 mainRouter.use("/tournaments", authMiddleware, tournamentsRouter);
 mainRouter.use("/matches", authMiddleware, matchesRouter);
+mainRouter.use("/home", authMiddleware, homeRouter);
 
 export default mainRouter;
