@@ -2,7 +2,10 @@ import React, { useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./HomePage.module.scss";
-import { setStatsTC } from "services/redux/reducers/home-reducer";
+import {
+  setLossesListTC,
+  setStatsTC,
+} from "services/redux/reducers/home-reducer";
 
 function HomePage() {
   const isAuth = useSelector((store) => store.auth.isAuth);
@@ -11,38 +14,21 @@ function HomePage() {
 
   useEffect(() => {
     dispatch(setStatsTC());
+    dispatch(setLossesListTC());
   }, [dispatch]);
 
-  const players = [
-    {
-      name: "Алик Мартиросян",
-      wins: 64,
-      losses: 29,
-    },
-    {
-      name: "Саня Саркисян",
-      wins: 20,
-      losses: 31,
-    },
-    {
-      name: "Михаил Носов",
-      wins: 34,
-      losses: 3,
-    },
-  ];
+  const players = useSelector((store) => store.home.lossesList);
+
   const mainInfo = {
     total: useSelector((store) => store.home.total),
     wins: useSelector((store) => store.home.allWins),
     matches: useSelector((store) => store.home.allMatches),
   };
 
-  const playersSortLosses = players.sort((p1, p2) => p2.losses - p1.losses);
-
-  const topList = playersSortLosses.map((p) => (
+  const topList = players.map((p) => (
     <tr className={s.player}>
-      <td>{p.name}</td>
-      <td>{p.wins}</td>
-      <td>{p.losses}</td>
+      <td>{`${p.sp_name} ${p.sp_surname}`}</td>
+      <td>{p.count}</td>
     </tr>
   ));
 
@@ -83,8 +69,7 @@ function HomePage() {
       <div className={s.wins_players}>
         <table>
           <tr>
-            <th>Имя</th>
-            <th>Побед</th>
+            <th>Игрок</th>
             <th>Поражений</th>
           </tr>
           {topList}

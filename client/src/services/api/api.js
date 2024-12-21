@@ -211,4 +211,13 @@ export const homeAPI = {
       throw error;
     }
   },
+  async getLossesList() {
+    try {
+      const response = await instance.get("api/home/losses_list");
+      return response;
+    } catch (error) {
+      console.error("Ошибка списка поражений: ", error);
+      throw error;
+    }
+  },
 }

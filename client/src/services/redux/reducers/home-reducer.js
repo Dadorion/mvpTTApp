@@ -8,6 +8,7 @@ const SET_AVERAGE_MATCHES = "home/SET_AVERAGE_MATCHES";
 const SET_AVERAGE_WINS = "home/SET_AVERAGE_WINS";
 const SET_TOTAL = "home/SET_TOTAL";
 const SET_LAST = "home/SET_LAST";
+const SET_LOSSES_LIST = "home/SET_LOSSES_LIST";
 
 const initialState = {
   allMatches: 0,
@@ -19,6 +20,7 @@ const initialState = {
   total: 0,
   last: 0,
   average: 0,
+  lossesList: []
 };
 
 function homeReducer(state = initialState, action) {
@@ -63,6 +65,11 @@ function homeReducer(state = initialState, action) {
         ...state,
         last: action.payload,
       };
+    case SET_LOSSES_LIST:
+      return {
+        ...state,
+        lossesList: action.payload,
+      };
     default:
       return state;
   }
@@ -95,6 +102,9 @@ export function setTotal(total) {
 export function setLast(last) {
   return { type: SET_LAST, payload: last };
 }
+export function setLossesList(list) {
+  return { type: SET_LOSSES_LIST, payload: list };
+}
 
 export function setStatsTC() {
   return async (dispatch) => {
@@ -110,7 +120,19 @@ export function setStatsTC() {
       dispatch(setAllMatches(Math.round(allMatches)));
       dispatch(setAllWins(Math.round(allWins)));
     } catch (error) {
-      console.error("Error fetching profile:", error);
+      console.error("Error fetching homepage:", error);
+    }
+  };
+}
+
+export function setLossesListTC() {
+  return async (dispatch) => {
+    try {
+      const answerLossesList = await homeAPI.getLossesList();
+
+      dispatch(setLossesList(answerLossesList.data));
+    } catch (error) {
+      console.error("Error fetching losses list:", error);
     }
   };
 }

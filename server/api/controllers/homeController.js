@@ -41,6 +41,22 @@ class HomeController {
       res.status(500).json(e);
     }
   }
+
+  static async getLossesList(req, res) {
+    try {
+      const { userId } = req.user;
+
+      if (!userId) {
+        res.status(400).json({ message: "We need ID number." });
+      }
+      const playerID = await UserService.getMyPlayerId(userId);
+      const list = await HomeService.getLossesList(playerID);
+
+      res.status(200).json(list);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
 }
 
 export default HomeController;
