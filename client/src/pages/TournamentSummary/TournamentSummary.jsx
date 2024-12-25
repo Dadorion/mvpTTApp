@@ -39,13 +39,12 @@ function TournamentSummary() {
     setViewAsTable(!viewAsTable);
   };
 
-  // Функция для захвата скриншота
   const handleDownloadScreenshot = () => {
     const element = document.getElementById("tournament-summary");
 
     html2canvas(element, {
       scrollX: 0,
-      scrollY: -window.scrollY, // Корректировка по оси Y
+      scrollY: -window.scrollY,
       width: element.scrollWidth,
       height: element.scrollHeight,
       windowWidth: document.documentElement.scrollWidth,

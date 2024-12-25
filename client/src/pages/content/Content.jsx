@@ -4,7 +4,8 @@ import { Route, Routes } from "react-router-dom";
 import s from "./Content.module.scss";
 
 import HomePage from "../homePage/HomePage";
-import Profile from "../profile/Profile";
+import Preference from "../preference/Preference";
+import Profile from "pages/profile/Profile";
 import Tabbar from "../../components/Tabbar/Tabbar";
 import Tournament from "../tournament/Tournament";
 import TournamentPlay from "../tournamentPlay/TournamentPlay";
@@ -19,6 +20,7 @@ function Content() {
       <Routes>
         <Route path="/home" element={<HomePage />} />
         <Route path="/tournaments" element={<Tournament />} />
+        <Route path="/preference" element={<Preference />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/tournament-start" element={<TournamentStart />} />
         <Route path="/tournament-play" element={<TournamentPlay />} />

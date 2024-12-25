@@ -25,8 +25,8 @@ function HomePage() {
     matches: useSelector((store) => store.home.allMatches),
   };
 
-  const topList = players.map((p) => (
-    <tr className={s.player}>
+  const topList = players.map((p, index) => (
+    <tr key={index} className={s.player}>
       <td>{`${p.sp_name} ${p.sp_surname}`}</td>
       <td>{p.count}</td>
     </tr>
@@ -68,11 +68,13 @@ function HomePage() {
       <h3>Топ самых сложных игроков</h3>
       <div className={s.wins_players}>
         <table>
-          <tr>
-            <th>Игрок</th>
-            <th>Поражений</th>
-          </tr>
-          {topList}
+          <thead>
+            <tr>
+              <th>Игрок</th>
+              <th>Поражений</th>
+            </tr>
+          </thead>
+          <tbody>{topList}</tbody>
         </table>
       </div>
       <div>Some else statistic data...</div>

@@ -3,7 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 
 import s from "./Tabbar.module.scss";
 
-import profileIcon from "../../assets/icons/svg_pack/Black/Light/User_light.svg";
+import preferenceIcon from "../../assets/icons/svg_pack/Black/Regular/Preference.svg";
 import tournamentIcon from "../../assets/icons/svg_pack/Black/Light/Trophy_light.svg";
 import homeIcon from "../../assets/icons/svg_pack/Black/Regular/House.svg";
 
@@ -28,7 +28,9 @@ function Tabbar() {
           <font>Главная</font>
         </div>
 
-        <div className={currentPath === "/tournaments" ? s.active : s.deactivated}>
+        <div
+          className={currentPath === "/tournaments" ? s.active : s.deactivated}
+        >
           <Link to="/tournaments">
             <img
               src={tournamentIcon}
@@ -39,11 +41,13 @@ function Tabbar() {
           <font>Счёт</font>
         </div>
 
-        <div className={currentPath === "/profile" ? s.active : s.deactivated}>
-          <Link to="/profile">
-            <img src={profileIcon} alt="profileIcon" />
+        <div
+          className={currentPath === "/preference" ? s.active : s.deactivated}
+        >
+          <Link to="/preference">
+            <img src={preferenceIcon} alt="preferenceIcon" />
           </Link>
-          <font>Профиль</font>
+          <font>Настройки</font>
         </div>
       </div>
     )

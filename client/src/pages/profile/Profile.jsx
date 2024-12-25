@@ -1,16 +1,19 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
+
 import s from "./Profile.module.scss";
+
+import Header from "components/header/Header";
 
 import {
   setNewPassword,
   setNewPasswordRepeat,
   changePasswordTC,
 } from "@reducers/profile-reducer";
-import {
-  logoutTC
-} from "@reducers/auth-reducer";
+import { setGoToProfile } from "services/redux/reducers/preference-reducer";
+import CustomButton from "components/CustomButtonTiny/CustomButtonTiny";
+import CustomButtonBold from "components/CustomButtonBold/CustomButtonBold";
 
 function Profile() {
   const dispatch = useDispatch();
@@ -22,10 +25,15 @@ function Profile() {
   const [showPasswordInput, setShowPasswordInput] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
   const [showPasswordRepeat, setShowPasswordRepeat] = useState(false);
+
   const isAuth = useSelector((store) => store.auth.isAuth);
 
   if (!isAuth) {
     return <Navigate to="/" />;
+  }
+
+  function handleGoToPreference() {
+    dispatch(setGoToProfile(false));
   }
 
   function handleShowPasswordInput() {
@@ -47,22 +55,29 @@ function Profile() {
     dispatch(changePasswordTC(newPassword));
     setShowPasswordInput(!showPasswordInput);
   }
-  function handleLogout() {
-    dispatch(logoutTC());
-  }
 
   return (
     <div className={s.Profile}>
-      <h2>Profile</h2>
-      <h1>{`${user.email}`}</h1>
+      <Header
+        headName="Профиль"
+        leftBtnLink="preference"
+        leftBtnHandler={handleGoToPreference}
+      />
 
-      <button type="button" onClick={handleShowPasswordInput}>
-        Изменить пароль
-      </button>
-
-      <button type="button" onClick={handleLogout}>
-        Выйти из профиля
-      </button>
+      <div className={s.menu}>
+        <div className={s.itemMenu}>
+          <div>Эл. почта</div>
+          <div>{`${user.email}`}</div>
+        </div>
+        {!showPasswordInput && (
+          <div className={s.itemMenu}>
+            <div>Пароль</div>
+            <div type="button" className={s.linkType} onClick={handleShowPasswordInput}>
+              Сменить пароль
+            </div>
+          </div>
+        )}
+      </div>
 
       {showPasswordInput && (
         <>
@@ -93,10 +108,13 @@ function Profile() {
               onChange={handleChangeNewPasswordRepeat}
             />
           </div>
-
-          <button type="button" onClick={handleConfirmNewPassword}>
-            Подтвердить изменение
-          </button>
+          <div className={s.buttons}>
+            <CustomButton title="Отменить" onClick={handleShowPasswordInput} />
+            <CustomButtonBold
+              title="Сохранить"
+              onClick={handleConfirmNewPassword}
+            />
+          </div>
         </>
       )}
     </div>

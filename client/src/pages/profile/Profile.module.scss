@@ -1,35 +1,51 @@
+@import "../../scss/base/vars";
 @import "../../scss/mixins/flex_mixins";
 
 .Profile {
   height: 100vh;
+  width: 100%;
 
-  @include flex-mix(column, center, center);
+  @include flex-mix(column, flex-start, center);
 
-  h1 {
-    color: #ccd3dc;
-    font-size: 2rem;
-    margin-top: 2rem;
-  }
-  h2 {
-    color: #ccd3dc;
-  }
-  .PasswordInput{
-    @include flex-mix(column, center, center);
-  }
-  input {
-    margin: 0.5rem;
-    padding: 1rem 2rem;
-    border: 1px solid black;
+  .menu {
+    width: 100%;
+    @include flex-mix(column, flex-start, flex-start);
 
-    color: #232e3f;
-    font-weight: 600;
+    .itemMenu {
+      @include flex-mix(column, flex-start, flex-start);
+      width: 100%;
+
+      border-bottom: 0.0625rem solid $Disabled-grey;
+      padding: 0.625rem;
+      gap: 0.625rem;
+
+      .linkType {
+        color: $Secondary;
+        text-decoration: underline;
+      }
+    }
   }
-  button {
+  .logout {
+    @include flex-mix(row, flex-start, flex-start);
+
     margin: 2rem;
-    padding: 1rem 2rem;
-    border-radius: 0.3rem;
+  }
+  .PasswordInput {
+    @include flex-mix(column, center, center);
+    margin-top: 2rem;
 
-    color: #232e3f;
-    font-weight: 600;
+    input {
+      margin: 0.5rem;
+      padding: 1rem 2rem;
+      border: 0.0625rem solid black;
+
+      color: #232e3f;
+      font-weight: 600;
+    }
+  }
+  .buttons {
+    width: 80%;
+    position: absolute;
+    bottom: 5rem;
   }
 }

@@ -1,0 +1,36 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.Preference {
+  height: 100vh;
+  padding: 44px 16px 0px 16px;
+  width: 100%;
+
+  @include flex-mix(column, flex-start, center);
+
+  h2 {
+    padding: 20px 0px 32px 0px;
+    color: $Basic;
+  }
+  .menu {
+    @include flex-mix(column, flex-start, flex-start);
+
+    width: 100%;
+
+    .itemMenu {
+      @include flex-mix(row, flex-start, center);
+      width: 100%;
+      cursor: pointer;
+
+      border-bottom: 1px solid $Disabled-grey;
+      padding: 10px;
+
+      > span {
+        margin-left: 10px;
+      }
+      .exit {
+        color: $Error-red;
+      }
+    }
+  }
+}

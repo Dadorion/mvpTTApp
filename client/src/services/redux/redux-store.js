@@ -15,6 +15,7 @@ import playersReducer from "./reducers/players-reducer";
 import tournamentReducer from "./reducers/tournament-reducer";
 import matchesReducer from "./reducers/matches-reducer";
 import homeReducer from "./reducers/home-reducer";
+import preferenceReducer from "./reducers/preference-reducer";
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -26,6 +27,7 @@ const reducers = combineReducers({
   tournament: tournamentReducer,
   matches: matchesReducer,
   home: homeReducer,
+  preference: preferenceReducer,
 });
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
