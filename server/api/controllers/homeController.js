@@ -42,6 +42,26 @@ class HomeController {
     }
   }
 
+  static async getAllTournaments(req, res) {
+    try {
+      const { userId } = req.user;
+
+      if (!userId) {
+        res.status(400).json({ message: "We need ID number." });
+      }
+      
+      const count = await HomeService.getAllTournaments(userId);
+
+      if (!count && count !== 0) {
+        res.status(400).json("No tournaments found");
+      }
+
+      res.status(200).json(count);
+    } catch (e) {
+      res.status(500).json(e);
+    }
+  }
+
   static async getLossesList(req, res) {
     try {
       const { userId } = req.user;

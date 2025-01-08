@@ -193,6 +193,15 @@ export const homeAPI = {
       throw error;
     }
   },
+  async getAllTournaments() {
+    try {
+      const response = await instance.get("api/home/all_tournaments");
+      return response;
+    } catch (error) {
+      console.error("Ошибка получения количества всех турниров: ", error);
+      throw error;
+    }
+  },
   async getLastMatches() {
     try {
       const response = await instance.get("api/home/last_matches");

@@ -23,6 +23,7 @@ function HomePage() {
     total: useSelector((store) => store.home.total),
     wins: useSelector((store) => store.home.allWins),
     matches: useSelector((store) => store.home.allMatches),
+    tournaments: useSelector((store) => store.home.allTournaments),
   };
 
   const topList = players.map((p, index) => (
@@ -63,6 +64,13 @@ function HomePage() {
             </div>
             <h5>Matches</h5>
           </div>
+          <div className={s.item}>
+            <div>
+              <span>{mainInfo.tournaments}</span>
+              <span></span>
+            </div>
+            <h5>Tournaments</h5>
+          </div>
         </div>
       </div>
       <h3>Топ самых сложных игроков</h3>
@@ -77,8 +85,6 @@ function HomePage() {
           <tbody>{topList}</tbody>
         </table>
       </div>
-      <div>Some else statistic data...</div>
-      <div>Турниров проведено</div>
     </div>
   );
 }
