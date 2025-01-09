@@ -1,0 +1,90 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.Players {
+  @include flex-mix(column, flex-start, space-between);
+
+  height: calc(100vh - $padding);
+  position: relative;
+  overflow: hidden;
+
+  padding: 2.75rem 1rem 0rem 1rem;
+
+  .check_counter {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    color: $Secondary;
+
+    span {
+      cursor: pointer;
+    }
+
+    .indicator {
+      @include flex-mix(row, flex-start, center);
+
+      .countSuccess {
+        color: $Success-green;
+      }
+      .countError {
+        color: $Error-red;
+      }
+    }
+  }
+  .sort {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    margin-top: 0.75rem;
+
+    .swap {
+      @include flex-mix(row, space-between, center);
+    }
+  }
+  .add_player_btn {
+    @include flex-mix(row, flex-start, center);
+
+    width: 100%;
+    margin-top: 2rem;
+    color: $Secondary;
+
+    img {
+      margin-right: 0.75rem;
+    }
+  }
+  .add_player_inputs {
+    @include flex-mix(row, space-between, center);
+
+    width: 100%;
+    margin-top: 2rem;
+
+    input {
+      border: 0.0625rem solid $Disabled-grey;
+      border-radius: 0.5rem;
+      padding: 0.25rem 0.5rem;
+
+      width: 8.875rem;
+      height: 1.8125rem;
+    }
+
+    img {
+      margin-right: 0.75rem;
+    }
+  }
+  .list_players {
+    @include flex-mix(column, flex-start, flex-start);
+
+    overflow: auto;
+    height: 63%;
+
+    margin-top: 0.5rem;
+    width: 100%;
+  }
+  .confirm_btn {
+    width: 100%;
+
+    position: absolute;
+    bottom: 0;
+    left: 0;
+  }
+}

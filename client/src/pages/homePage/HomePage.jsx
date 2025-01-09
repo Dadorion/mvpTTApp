@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./HomePage.module.scss";
@@ -6,9 +6,12 @@ import {
   setLossesListTC,
   setStatsTC,
 } from "services/redux/reducers/home-reducer";
+import CustomButton from "components/CustomButtonBold/CustomButtonBold";
 
 function HomePage() {
   const isAuth = useSelector((store) => store.auth.isAuth);
+
+  const [navToPlayers, setNavToPlayers] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -36,6 +39,13 @@ function HomePage() {
   if (!isAuth) {
     return <Navigate to="/login" />;
   }
+  if (navToPlayers) {
+    return <Navigate to="/players-home" />;
+  }
+
+  const handleGoToPlayers = () => {
+    setNavToPlayers(true);
+  };
 
   return (
     <div className={s.HomePage}>
@@ -85,6 +95,10 @@ function HomePage() {
           <tbody>{topList}</tbody>
         </table>
       </div>
+      <CustomButton
+        title={"Посмотреть всех игроков"}
+        onClick={handleGoToPlayers}
+      />
     </div>
   );
 }

@@ -10,6 +10,7 @@ import Tabbar from "../../components/Tabbar/Tabbar";
 import Tournament from "../tournament/Tournament";
 import TournamentPlay from "../tournamentPlay/TournamentPlay";
 import TournamentSummary from "../TournamentSummary/TournamentSummary";
+import PlayersHome from "../players_home/PlayersHome";
 import Players from "../players/Players";
 import Congratulations from "../Congratulations/Congratulations";
 import TournamentStart from "pages/tournamentStart/TournamentStart";
@@ -28,6 +29,7 @@ function Content() {
         <Route path="/tournament-summary" element={<TournamentSummary />} />
 
         <Route path="/players" element={<Players />} />
+        <Route path="/players-home" element={<PlayersHome />} />
       </Routes>
       <Tabbar />
     </div>
