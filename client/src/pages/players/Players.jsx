@@ -12,14 +12,13 @@ import {
 
 import s from "./Players.module.scss";
 
-import swapIcon from "@icons/Black/Light/Swap_light.svg";
-import searchIcon from "@icons/Black/Light/Search_light.svg";
 import plusIcon from "@icons/Colored/Plus.svg";
 
 import Header from "@components/header/Header";
 import CheckBox from "@components/CheckBox/CheckBox";
 import CustomButtonBold from "@components/CustomButtonBold/CustomButtonBold";
 import UserIndicatorExt from "@components/UserIndicatorExt/UserIndicatorExt";
+import Sorter from "components/Sorter/Sorter";
 
 function Players() {
   const dispatch = useDispatch();
@@ -113,13 +112,7 @@ function Players() {
         countPlayers={countPlayers}
       />
 
-      <div className={s.sort}>
-        <div className={s.swap}>
-          <img src={swapIcon} alt="swapIcon" />
-          Последние
-        </div>
-        <img src={searchIcon} alt="searchIcon" />
-      </div>
+      <Sorter />
 
       {!showInput && (
         <div className={s.add_player_btn} onClick={handleShowInput}>

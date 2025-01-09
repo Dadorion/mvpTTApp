@@ -1,0 +1,26 @@
+@import "../../scss/base/vars";
+@import "../../scss/mixins/flex_mixins";
+
+.Sorter {
+  @include flex-mix(row, space-between, center);
+
+  width: 100%;
+  margin-top: 0.75rem;
+
+  .swap {
+    @include flex-mix(row, space-between, center);
+  }
+  .sortModes {
+    @include flex-mix(column, center, center);
+
+    position: absolute;
+    top: 9rem;
+    left: 2.5rem;
+
+    background-color: #fff;
+
+    > div {
+      padding: 0.5rem;
+    }
+  }
+}
