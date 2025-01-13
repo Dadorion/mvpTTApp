@@ -11,6 +11,7 @@ import Tournament from "../tournament/Tournament";
 import TournamentPlay from "../tournamentPlay/TournamentPlay";
 import TournamentSummary from "../TournamentSummary/TournamentSummary";
 import PlayersHome from "../players_home/PlayersHome";
+import PlayerStats from "../playerStats/PlayerStats"
 import Players from "../players/Players";
 import Congratulations from "../Congratulations/Congratulations";
 import TournamentStart from "pages/tournamentStart/TournamentStart";
@@ -20,6 +21,7 @@ function Content() {
     <div className={s.Content}>
       <Routes>
         <Route path="/home" element={<HomePage />} />
+        <Route path="/player:id" element={<PlayerStats />} />
         <Route path="/tournaments" element={<Tournament />} />
         <Route path="/preference" element={<Preference />} />
         <Route path="/profile" element={<Profile />} />
