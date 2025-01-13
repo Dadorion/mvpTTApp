@@ -1,24 +1,30 @@
 import React, { useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
 import s from "./HomePage.module.scss";
+
 import {
   setLossesListTC,
   setStatsTC,
 } from "services/redux/reducers/home-reducer";
+
 import CustomButton from "components/CustomButtonBold/CustomButtonBold";
+import Preloader from "components/PreloaderMini/Preloader";
 
 function HomePage() {
-  const isAuth = useSelector((store) => store.auth.isAuth);
+  const dispatch = useDispatch();
 
   const [navToPlayers, setNavToPlayers] = useState(false);
 
-  const dispatch = useDispatch();
+  const [loadingState, setLoadingState] = useState({
+  total: true,
+    wins: true,
+    matches: true,
+    tournaments: true,
+  });
 
-  useEffect(() => {
-    dispatch(setStatsTC());
-    dispatch(setLossesListTC());
-  }, [dispatch]);
+  const isAuth = useSelector((store) => store.auth.isAuth);
 
   const players = useSelector((store) => store.home.lossesList);
 
@@ -36,6 +42,43 @@ function HomePage() {
     </tr>
   ));
 
+  const handleGoToPlayers = () => {
+    setNavToPlayers(true);
+  };
+
+  const simulateLoading = (key) => {
+    setTimeout(() => {
+      setLoadingState((prev) => ({ ...prev, [key]: false }));
+    }, 700);
+  };
+
+  const renderStat = (value, key, label) => (
+    <div className={s.item}>
+      <div>
+        {loadingState[key] ? (
+          <Preloader />
+        ) : (
+          <>
+            <span>{value}</span>
+            <span>{key === "total" ? "%" : ""}</span>
+          </>
+        )}
+      </div>
+      <h5>{label}</h5>
+    </div>
+  );
+
+  useEffect(() => {
+    const fetchData = async () => {
+      dispatch(setStatsTC());
+      dispatch(setLossesListTC());
+
+      Object.keys(loadingState).forEach(simulateLoading);
+    };
+
+    fetchData();
+  }, [dispatch, loadingState]);
+
   if (!isAuth) {
     return <Navigate to="/login" />;
   }
@@ -43,44 +86,16 @@ function HomePage() {
     return <Navigate to="/players-home" />;
   }
 
-  const handleGoToPlayers = () => {
-    setNavToPlayers(true);
-  };
-
   return (
     <div className={s.HomePage}>
       <h1>Мои победы</h1>
       <h3>Показатели эффективности</h3>
       <div className={s.wins_mainInfo}>
         <div className={s.info}>
-          <div className={s.item}>
-            <div>
-              <span>{mainInfo.total}</span>
-              <span>%</span>
-            </div>
-            <h5>Total</h5>
-          </div>
-          <div className={s.item}>
-            <div>
-              <span>{mainInfo.wins}</span>
-              <span></span>
-            </div>
-            <h5>Wins</h5>
-          </div>
-          <div className={s.item}>
-            <div>
-              <span>{mainInfo.matches}</span>
-              <span></span>
-            </div>
-            <h5>Matches</h5>
-          </div>
-          <div className={s.item}>
-            <div>
-              <span>{mainInfo.tournaments}</span>
-              <span></span>
-            </div>
-            <h5>Tournaments</h5>
-          </div>
+          {renderStat(mainInfo.total, "total", "Total")}
+          {renderStat(mainInfo.wins, "wins", "Wins")}
+          {renderStat(mainInfo.matches, "matches", "Matches")}
+          {renderStat(mainInfo.tournaments, "tournaments", "Tournaments")}
         </div>
       </div>
       <h3>Топ самых сложных игроков</h3>

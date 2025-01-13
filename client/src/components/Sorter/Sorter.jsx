@@ -14,9 +14,9 @@ function Sorter() {
     setShowSortMode(!showSortMode);
   };
 
-  const sortMode = ["Последние", "По имени", "По фамилии", "По дате"];
+  const sortModeList = ["Последние", "По имени", "По фамилии", "По дате"];
 
-  const sortModes = sortMode.map((mod, index) => {
+  const sortModes = sortModeList.map((mod, index) => {
     return (
       <div
         key={index}

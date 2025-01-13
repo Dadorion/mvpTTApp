@@ -89,7 +89,7 @@ function Players() {
   });
 
   return (
-    <div className={s.Players}>
+    <div className={s.Players} onClick={(e)=>{console.log(e)}}>
       <Header
         headName={"Все мои игроки"}
         leftBtnLink={"home"}
