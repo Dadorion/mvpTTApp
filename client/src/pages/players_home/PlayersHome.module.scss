@@ -4,6 +4,7 @@
 .Players {
   @include flex-mix(column, flex-start, space-between);
 
+  width: 100%;
   height: calc(100vh - $padding);
   position: relative;
   overflow: hidden;
@@ -31,7 +32,7 @@
       }
     }
   }
-  
+
   .add_player_btn {
     @include flex-mix(row, flex-start, center);
 
@@ -56,12 +57,24 @@
 
       width: 8.875rem;
       height: 1.8125rem;
+
+    }
+
+    .inputError {
+      border-color: $Error-red;
     }
 
     img {
       margin-right: 0.75rem;
     }
   }
+
+  .error {
+    color: $Error-red;
+    font-size: 0.875rem;
+    margin-top: 0.5rem;
+  }
+  
   .list_players {
     @include flex-mix(column, flex-start, flex-start);
 
@@ -70,12 +83,11 @@
 
     margin-top: 0.5rem;
     width: 100%;
-  }
-  .confirm_btn {
-    width: 100%;
 
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    > div {
+      width: 100%;
+      border-bottom: 0.0625rem solid #E1E1E1;
+      padding: 0.5rem 0rem;
+    }
   }
 }
