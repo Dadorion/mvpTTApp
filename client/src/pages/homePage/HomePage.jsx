@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useMemo } from "react";
 import { Navigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
@@ -22,18 +22,24 @@ function HomePage() {
     wins: true,
     matches: true,
     tournaments: true,
+    players: true,
   });
 
   const isAuth = useSelector((store) => store.auth.isAuth);
 
   const players = useSelector((store) => store.home.lossesList);
 
-  const mainInfo = {
-    total: useSelector((store) => store.home.total),
-    wins: useSelector((store) => store.home.allWins),
-    matches: useSelector((store) => store.home.allMatches),
-    tournaments: useSelector((store) => store.home.allTournaments),
-  };
+  const total = useSelector((store) => store.home.total);
+  const wins = useSelector((store) => store.home.allWins);
+  const matches = useSelector((store) => store.home.allMatches);
+  const tournaments = useSelector((store) => store.home.allTournaments);
+
+  const mainInfo = useMemo(() => ({
+    total,
+    wins,
+    matches,
+    tournaments,
+  }), [total, wins, matches, tournaments]);
 
   const topList = players.map((p, index) => (
     <tr key={index} className={s.player}>
@@ -44,12 +50,6 @@ function HomePage() {
 
   const handleGoToPlayers = () => {
     setNavToPlayers(true);
-  };
-
-  const simulateLoading = (key) => {
-    setTimeout(() => {
-      setLoadingState((prev) => ({ ...prev, [key]: false }));
-    }, 700);
   };
 
   const renderStat = (value, key, label) => (
@@ -70,14 +70,28 @@ function HomePage() {
 
   useEffect(() => {
     const fetchData = async () => {
-      dispatch(setStatsTC());
-      dispatch(setLossesListTC());
+      try {
+        await dispatch(setStatsTC());
+        setLoadingState((prev) => ({
+          ...prev,
+          total: mainInfo.total !== undefined ? false : prev.total,
+          wins: mainInfo.wins !== undefined ? false : prev.wins,
+          matches: mainInfo.matches !== undefined ? false : prev.matches,
+          tournaments: mainInfo.tournaments !== undefined ? false : prev.tournaments,
+        }));
 
-      Object.keys(loadingState).forEach(simulateLoading);
+        await dispatch(setLossesListTC());
+        setLoadingState((prev) => ({
+          ...prev,
+          players: players.length > 0 ? false : prev.players,
+        }));
+      } catch (error) {
+        console.error("Ошибка загрузки данных:", error);
+      }
     };
 
     fetchData();
-  }, [dispatch, loadingState]);
+  }, [dispatch, mainInfo, players]);
 
   if (!isAuth) {
     return <Navigate to="/login" />;
@@ -100,15 +114,19 @@ function HomePage() {
       </div>
       <h3>Топ самых сложных игроков</h3>
       <div className={s.wins_players}>
-        <table>
-          <thead>
-            <tr>
-              <th>Игрок</th>
-              <th>Поражений</th>
-            </tr>
-          </thead>
-          <tbody>{topList}</tbody>
-        </table>
+        {loadingState.players ? (
+          <Preloader />
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>Игрок</th>
+                <th>Поражений</th>
+              </tr>
+            </thead>
+            <tbody>{topList}</tbody>
+          </table>
+        )}
       </div>
       <CustomButton
         title={"Посмотреть всех игроков"}
