@@ -6,14 +6,12 @@ export default function makeQueue(players) {
 
   for (let n = 0; n < players.length; n++) {
     for (let i = flag; i < players.length; i++) {
-      // сам с собой не играет
       if (players[n].id !== players[i].id) {
         const pair = {id, playersPair: [{ ...players[n] }, { ...players[i] }]};
         queue.push(pair);
         id++
       }
     }
-    // не повторяется
     flag++;
   }
 

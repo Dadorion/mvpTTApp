@@ -134,7 +134,6 @@ class AuthController {
       const decodedToken = jwt.decode(token);
       const expiration = new Date(decodedToken.exp * 1000);
 
-      // Добавление токена в черный список
       await AuthService.logout(token, expiration);
 
       res.json({

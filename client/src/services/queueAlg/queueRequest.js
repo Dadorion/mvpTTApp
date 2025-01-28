@@ -5,13 +5,11 @@ export default function makeQueueRequest(players) {
 
   for (let n = 0; n < players.length; n++) {
     for (let i = flag; i < players.length; i++) {
-      // сам с собой не играет
       if (players[n].id !== players[i].id) {
         const pair = { fPlayerId: players[n].id, sPlayerId: players[i].id };
         queue.push(pair);
       }
     }
-    // не повторяется
     flag++;
   }
 

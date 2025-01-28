@@ -3,7 +3,6 @@
 
 .TournamentSummary {
   @include flex-mix(column, flex-start, center);
-  //   outline: 0.0625rem solid red;
 
   height: calc(100vh - $padding);
   background-color: #385a64;

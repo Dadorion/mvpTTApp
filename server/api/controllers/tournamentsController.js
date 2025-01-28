@@ -51,7 +51,6 @@ class TournamentsController {
       const tournament = await TournamentsService.check(userId);
 
       res.status(200).json(tournament);
-      // res.status(200).json(true);
     } catch (e) {
       res.status(500).json(e);
     }
