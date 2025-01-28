@@ -16,6 +16,7 @@ import tournamentReducer from "./reducers/tournament-reducer";
 import matchesReducer from "./reducers/matches-reducer";
 import homeReducer from "./reducers/home-reducer";
 import preferenceReducer from "./reducers/preference-reducer";
+import { playerStatsReducer } from "./reducers/playerStats-reducer";
 
 const reducers = combineReducers({
   auth: authReducer,
@@ -24,6 +25,7 @@ const reducers = combineReducers({
   registration: registrationReducer,
   login: loginReducer,
   players: playersReducer,
+  playerStats: playerStatsReducer,
   tournament: tournamentReducer,
   matches: matchesReducer,
   home: homeReducer,

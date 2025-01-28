@@ -20,6 +20,27 @@ class PlayersController {
     }
   }
 
+  static async getPlayerStats(req, res) {
+    try {
+      const { playerId } = req.params;
+
+      if (!playerId) {
+        return res.status(400).json({ message: "Player ID is required." });
+      }
+
+      const playerStats = await PlayersService.getPlayerStats( playerId);
+
+      if (!playerStats) {
+        return res.status(404).json({ message: "Player not found or no stats available." });
+      }
+
+      return res.status(200).json(playerStats);
+    } catch (e) {
+      return res.status(500).json({ message: "Internal server error.", error: e.message });
+    }
+  }
+
+
   static async addNewPlayers(req, res) {
     try {
       const { userId } = req.user;

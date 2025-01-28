@@ -71,6 +71,15 @@ export const playersAPI = {
       throw error;
     }
   },
+  async getPlayerStats(id) {
+    try {
+      const response = await instance.get(`/api/players/${id}`);
+      return response;
+    } catch (error) {
+      console.error("Ошибка запроса статистики игрока: ", error);
+      throw error;
+    }
+  },
   async createNewPlayer(name, surname) {
     try {
       const response = await instance.post("api/players", { name, surname });

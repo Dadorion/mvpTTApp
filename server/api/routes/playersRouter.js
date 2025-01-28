@@ -5,6 +5,7 @@ import authMiddleware from "../middleware/authMiddleware.js";
 const playersRouter = new Router();
 
 playersRouter.get("/", authMiddleware, PlayersController.getMyPlayers);
+playersRouter.get("/:playerId", authMiddleware, PlayersController.getPlayerStats);
 playersRouter.post("/", authMiddleware, PlayersController.addNewPlayers);
 
 export default playersRouter;

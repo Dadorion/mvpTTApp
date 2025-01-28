@@ -85,7 +85,7 @@ function Players() {
   };
 
   const handleClickPlayer = (id) => {
-    navigate(`/player-${id}`);
+    navigate(`/player/${id}`);
   };
 
   const printPlayers = playersState.map((player) => (
